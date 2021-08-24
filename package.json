@@ -1,0 +1,95 @@
+{
+  "name": "chic-modules",
+  "version": "0.0.0",
+  "description": "A familiar styled-like api for working with css-modules",
+  "license": "MIT",
+  "author": "Liam Howell <liam@liam.codes>",
+  "main": "./dist/chic-modules.js",
+  "typings": "./types/index.d.ts",
+  "scripts": {
+    "build": "microbundle --entry ./src/index.ts --no-sourcemap",
+    "format": "prettier './{src,test,types}/**/*.{ts,tsx}' --check",
+    "format:fix": "yarn format --write",
+    "lint": "eslint './{src,test,types}/**/*.{ts,tsx}'",
+    "lint:fix": "yarn lint --fix",
+    "lint:types": "tsc --noEmit",
+    "prepare": "husky install",
+    "test": "jest --coverage"
+  },
+  "publishConfig": {
+    "source": "./src/index.ts",
+    "exports": "./dist/chic-modules.modern.js",
+    "main": "./dist/chic-modules.js",
+    "module": "./dist/chic-modules.module.js",
+    "unpkg": "./dist/chic-modules.umd.js"
+  },
+  "browserslist": [
+    "defaults",
+    "ie >= 11"
+  ],
+  "files": [
+    "dist/",
+    "src/",
+    "types/",
+    "LICENSE.md",
+    "package.json",
+    "README.md",
+    "tsconfig.json"
+  ],
+  "keywords": [
+    "css",
+    "css-modules",
+    "react",
+    "styled"
+  ],
+  "dependencies": {
+    "@emotion/is-prop-valid": "^1.1.0",
+    "classnames": "^2.3.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.15",
+    "@babel/eslint-parser": "^7.15.0",
+    "@babel/preset-env": "^7.13.15",
+    "@babel/preset-react": "^7.13.13",
+    "@babel/preset-typescript": "^7.15.0",
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.0.0",
+    "@testing-library/react-hooks": "^7.0.1",
+    "@types/jest": "^27.0.1",
+    "@types/node": "^16.6.1",
+    "@types/react": "^17.0.18",
+    "@types/react-dom": "^17.0.9",
+    "@typescript-eslint/eslint-plugin": "^4.29.3",
+    "@typescript-eslint/parser": "^4.29.3",
+    "eslint": "^7.32.0",
+    "eslint-config-semistandard": "^16.0.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-compat": "^3.13.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest-dom": "^3.9.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-react": "^7.23.2",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-sort-destructure-keys": "^1.3.5",
+    "eslint-plugin-sort-imports-es6-autofix": "^0.6.0",
+    "eslint-plugin-sort-keys-fix": "^1.1.2",
+    "eslint-plugin-standard": "^5.0.0",
+    "eslint-plugin-testing-library": "^4.10.1",
+    "husky": "^7.0.1",
+    "jest": "^27.0.6",
+    "microbundle": "^0.13.3",
+    "np": "^7.5.0",
+    "prettier": "^2.3.2",
+    "typescript": "^4.1.2"
+  },
+  "peerDependencies": {
+    "react": ">= 16.8.0",
+    "react-dom": ">= 16.8.0"
+  }
+}

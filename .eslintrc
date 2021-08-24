@@ -1,0 +1,75 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:compat/recommended",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
+    "plugin:jest-dom/recommended",
+    "plugin:react/recommended",
+    "standard",
+    "semistandard"
+  ],
+
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jest": true
+  },
+
+  "parser": "@typescript-eslint/parser",
+
+  "plugins": [
+    "@typescript-eslint",
+    "compat",
+    "import",
+    "jest-dom",
+    "react",
+    "react-hooks",
+    "prettier",
+    "sort-destructure-keys",
+    "sort-imports-es6-autofix",
+    "sort-keys-fix",
+    "testing-library"
+  ],
+
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+
+  "rules": {
+    "@typescript-eslint/no-unused-vars": "error",
+    "comma-dangle": ["error", "always-multiline"],
+    "import/first": "error",
+    "import/newline-after-import": ["error", { "count": 1 }],
+    "no-unused-vars": "off",
+    "prettier/prettier": "error",
+    "sort-destructure-keys/sort-destructure-keys": ["error", { "caseSensitive": true }],
+    "sort-imports-es6-autofix/sort-imports-es6": [
+      "error",
+      {
+        "ignoreCase": false,
+        "ignoreMemberSort": false,
+        "memberSyntaxSortOrder": ["none", "all", "single", "multiple"]
+      }
+    ],
+    "sort-keys-fix/sort-keys-fix": "error",
+    "space-before-function-paren": [
+      "error",
+      {
+        "anonymous": "always",
+        "asyncArrow": "always",
+        "named": "never"
+      }
+    ],
+    "valid-typeof": ["error", { "requireStringLiterals": false }]
+  },
+
+  "overrides": [
+    {
+      "extends": ["plugin:testing-library/react"],
+      "files": ["**/?(*.)+(spec|test).[jt]s?(x)"]
+    }
+  ]
+}

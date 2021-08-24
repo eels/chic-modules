@@ -1,0 +1,13 @@
+{
+  "collectCoverageFrom": ["src/**/*.{ts,tsx}"],
+
+  "moduleDirectories": ["node_modules", "src", "tests"],
+
+  "moduleFileExtensions": ["js", "ts", "tsx"],
+
+  "roots": ["<rootDir>/test/"],
+
+  "setupFilesAfterEnv": ["<rootDir>/test/setup.ts"],
+
+  "testEnvironment": "jsdom"
+}
