@@ -14,6 +14,7 @@
     "lint": "eslint './{src,test,types}/**/*.{ts,tsx}'",
     "lint:fix": "yarn lint --fix",
     "lint:types": "tsc --noEmit",
+    "prepack": "yarn clean && yarn build",
     "prepare": "husky install",
     "test": "jest --coverage"
   },
