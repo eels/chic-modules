@@ -1,16 +1,9 @@
 import Benchmark from 'benchmark';
-import createCanary from '../dist/chic-modules';
+import createCanary from '../dist/chic-modules.module';
 import createLatest from 'chic-modules';
 import react, { FunctionComponent } from 'react';
 import styles from '../test/__mocks__/styles.module.json';
-import { exec } from 'child_process';
 import { renderToString } from 'react-dom/server';
-
-function boot() {
-  console.log('Fetching:', 'chic-modules@latest');
-
-  exec('yarn upgrade chic-modules');
-}
 
 function renderComponent(Component: FunctionComponent) {
   interface ComponentProps {
@@ -56,5 +49,4 @@ suite.on('start', onBenchmarkStart);
 suite.on('error', onBenchmarkError);
 suite.on('cycle', onBenchmarkCycle);
 
-boot();
-suite.run();
+suite.run({ async: true });

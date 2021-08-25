@@ -8,7 +8,7 @@
   "main": "./dist/chic-modules.js",
   "typings": "./types/index.d.ts",
   "scripts": {
-    "benchmark": "ts-node ./benchmarks",
+    "benchmark": "yarn upgrade chic-modules --silent && ts-node ./benchmarks",
     "build": "microbundle --entry ./src/index.ts --no-sourcemap",
     "clean": "rimraf ./dist",
     "format": "prettier './{benchmarks,src,test,types}/**/*.{ts,tsx}' --check",
