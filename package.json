@@ -1,6 +1,7 @@
 {
   "name": "chic-modules",
   "version": "0.0.0",
+  "sideEffects": false,
   "description": "A familiar styled-like api for working with css-modules",
   "license": "MIT",
   "author": "Liam Howell <liam@liam.codes>",
