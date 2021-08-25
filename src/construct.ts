@@ -12,31 +12,37 @@ export default function construct<Props = ChicProps>(options: ConstructOptions<P
   function wrapper() {
     function styled(props: Props, ref: Ref<Element>) {
       const constructedProps = <ChicProps>Object.assign({}, attrs, props);
+      const constructedPropsKeys = Object.keys(constructedProps);
+      const propsKeys = Object.keys(props);
 
       const as = constructedProps.as || target;
       const hasValidAs = isType(as, ['function', 'object', 'string']);
       const element = hasValidAs && !isType(target, 'object') ? as : target;
+      const isTargetObject = isType(target, 'object');
 
-      for (const prop in constructedProps) {
-        if (!isValidProp(prop) && !isType(target, 'object')) {
+      for (const prop of constructedPropsKeys) {
+        if (!isValidProp(prop) && !isTargetObject) {
           delete constructedProps[prop];
         }
       }
 
       const isSingularClassName = isType(classNames, 'string');
       const classNamesArray = <string[]>(!isSingularClassName ? classNames : [classNames]);
+      const prefixes = ['has', 'is', 'with'];
+      const prefixesRegex = new RegExp(`^(${prefixes.join('|')})`);
 
       for (const className of classNamesArray) {
-        if (!styles[className]) {
+        const stylesLookup = styles[className];
+        const modifiers: ExtendableObject<Props[Extract<keyof Props, string>]> = {};
+
+        if (!stylesLookup) {
           continue;
         }
 
-        const modifiers: ExtendableObject<Props[Extract<keyof Props, string>]> = {};
-        const prefixes = ['has', 'is', 'with'];
-        const prefixesRegex = new RegExp(`^(${prefixes.join('|')})`);
+        for (const prop of propsKeys) {
+          const propValue = (<ChicProps>props)[prop];
 
-        for (const prop in props) {
-          if (!prefixes.some((prefix) => prop.startsWith(prefix)) || !props[prop]) {
+          if (!prefixes.some((prefix) => prop.startsWith(prefix)) || !propValue) {
             continue;
           }
 
@@ -44,15 +50,16 @@ export default function construct<Props = ChicProps>(options: ConstructOptions<P
           const modifier = prop.replace(prefixesRegex, '').toLowerCase();
 
           const baseClassName = `${className}--${convertCamelToKebabCase(modifier)}`;
-          const modifierValueExtention = prefix === 'with' ? `-${props[prop]}` : '';
+          const modifierValueExtention = prefix === 'with' ? `-${propValue}` : '';
           const constructedClassName = `${baseClassName}${modifierValueExtention}`;
+          const constructedStylesLookup = styles[constructedClassName];
 
-          if (styles[constructedClassName]) {
-            modifiers[styles[constructedClassName]] = props[prop];
+          if (constructedStylesLookup) {
+            modifiers[constructedStylesLookup] = propValue;
           }
         }
 
-        constructedProps.className = cx(styles[className], modifiers, constructedProps.className);
+        constructedProps.className = cx(stylesLookup, modifiers, constructedProps.className);
       }
 
       const propsToForward = Object.assign({}, constructedProps, ref ? { ref } : {});
