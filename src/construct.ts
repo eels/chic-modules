@@ -42,7 +42,7 @@ export default function construct<Props = ChicProps>(options: ConstructOptions<P
         for (const prop of propsKeys) {
           const propValue = (<ChicProps>props)[prop];
 
-          if (!prefixes.some((prefix) => prop.startsWith(prefix)) || !propValue) {
+          if (!prefixes.some((prefix) => !!prop.match(`^${prefix}`)) || !propValue) {
             continue;
           }
 
