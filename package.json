@@ -33,12 +33,11 @@
   ],
   "files": [
     "dist/",
-    "src/",
-    "types/",
+    "types/index.d.ts",
+    "types/tags.ts",
     "LICENSE.md",
     "package.json",
-    "README.md",
-    "tsconfig.json"
+    "README.md"
   ],
   "keywords": [
     "css",

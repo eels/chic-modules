@@ -1,5 +1,5 @@
 import construct from './construct';
-import tags from './utils/tags';
+import tags from '../types/tags';
 import { Attrs, CSSModule, ChicFactory, ChicFunction, ChicTagFunction } from '../types';
 
 export default function create(styles: CSSModule) {

@@ -1,4 +1,4 @@
-import tags from '../src/utils/tags';
+import tags from './tags';
 import { ComponentType, ForwardRefExoticComponent, PropsWithoutRef } from 'react';
 
 export type ExtendableObject<T = any> = { [key: string]: T };

@@ -1,7 +1,7 @@
 import construct from '../src/construct';
 import create from '../src/create';
 import styles from './__mocks__/styles.module.json';
-import tags from '../src/utils/tags';
+import tags from '../types/tags';
 import { ConstructOptions } from '../types';
 
 jest.mock('../src/construct', () => jest.fn());
