@@ -17,6 +17,16 @@
   <h1></h1>
 </div>
 
+## Badge
+
+Sing loud and proud! Let the world know that you're using **chic-modules**
+
+[![styled with: chic-modules](https://img.shields.io/badge/styled%20with-%E2%9C%A8%20chic--modules-blue?style=flat-square)](https://github.com/eels/chic-modules)
+
+```md
+[![styled with: chic-modules](https://img.shields.io/badge/styled%20with-%E2%9C%A8%20chic--modules-blue?style=flat-square)](https://github.com/eels/chic-modules)
+```
+
 ## License
 
 MIT - see the [LICENSE.md](https://github.com/eels/chic-modules/blob/main/LICENSE.md) file for details
