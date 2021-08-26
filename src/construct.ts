@@ -1,5 +1,5 @@
+import cc from 'classcat';
 import convertCamelToKebabCase from './utils/convertCamelToKebabCase';
-import cx from 'classnames/dedupe';
 import generateDisplayName from './utils/generateDisplayName';
 import isType from './utils/isType';
 import isValidProp from '@emotion/is-prop-valid';
@@ -47,7 +47,7 @@ export default function construct<Props = ChicProps>(options: ConstructOptions<P
           }
         }
 
-        constructedProps.className = cx(stylesLookup, modifiers, constructedProps.className);
+        constructedProps.className = cc([stylesLookup, modifiers, constructedProps.className]);
       }
 
       const as = constructedProps.as || target;
