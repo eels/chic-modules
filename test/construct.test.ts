@@ -156,6 +156,30 @@ describe('construct', () => {
     expect(screen.getByRole('heading')).toHaveClass('heading--weight-bold');
   });
 
+  it('should convert `is` and `has` props to be kebab cased class names', () => {
+    const parameters: ConstructOptions = {
+      attrs: { hasBorderDashed: true, isSansSerif: true },
+      classNames: 'heading',
+      styles: styles,
+      target: 'h1',
+    };
+
+    render(createElement(construct(parameters)));
+    expect(screen.getByRole('heading')).toHaveClass('heading--sans-serif heading--border-dashed');
+  });
+
+  it('should convert `with` props to be kebab cased class names', () => {
+    const parameters: ConstructOptions = {
+      attrs: {},
+      classNames: 'heading',
+      styles: styles,
+      target: 'h1',
+    };
+
+    render(createElement(construct(parameters), { withFontSize: 'large' }));
+    expect(screen.getByRole('heading')).toHaveClass('heading--font-size-large');
+  });
+
   it('should dedupe class names where required', () => {
     const parameters: ConstructOptions = {
       attrs: { isPrimary: true },

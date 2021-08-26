@@ -5,7 +5,13 @@
 
   "heading--border": "heading--border",
 
+  "heading--border-dashed": "heading--border-dashed",
+
+  "heading--font-size-large": "heading--font-size-large",
+
   "heading--primary": "heading--primary",
+
+  "heading--sans-serif": "heading--sans-serif",
 
   "heading--weight-bold": "heading--weight-bold",
 

@@ -35,9 +35,9 @@ export default function construct<Props = ChicProps>(options: ConstructOptions<P
           }
 
           const prefix = prop.match(prefixesRegex)?.[0];
-          const modifier = prop.replace(prefixesRegex, '').toLowerCase();
+          const modifier = convertCamelToKebabCase(prop.replace(prefixesRegex, ''));
 
-          const baseClassName = `${className}--${convertCamelToKebabCase(modifier)}`;
+          const baseClassName = `${className}--${modifier.toLowerCase()}`;
           const modifierValueExtention = prefix === 'with' ? `-${propValue}` : '';
           const constructedClassName = `${baseClassName}${modifierValueExtention}`;
           const constructedStylesLookup = styles[constructedClassName];
