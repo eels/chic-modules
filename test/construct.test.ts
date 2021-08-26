@@ -132,6 +132,30 @@ describe('construct', () => {
     expect(screen.getByRole('heading')).not.toHaveClass('heading--secondary');
   });
 
+  it('should convert truthy props prefixed with `is` or `has` from `attrs` to class names', () => {
+    const parameters: ConstructOptions = {
+      attrs: { hasBorder: true, isPrimary: true },
+      classNames: 'heading',
+      styles: styles,
+      target: 'h1',
+    };
+
+    render(createElement(construct(parameters)));
+    expect(screen.getByRole('heading')).toHaveClass('heading--primary heading--border');
+  });
+
+  it('should convert truthy props prefixed with `with` from `attrs` to class names', () => {
+    const parameters: ConstructOptions = {
+      attrs: { withWeight: 'bold' },
+      classNames: 'heading',
+      styles: styles,
+      target: 'h1',
+    };
+
+    render(createElement(construct(parameters)));
+    expect(screen.getByRole('heading')).toHaveClass('heading--weight-bold');
+  });
+
   it('should successfully forward and update component refs', () => {
     const ref = createRef<Element>();
     const parameters: ConstructOptions = {

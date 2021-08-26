@@ -13,18 +13,6 @@ export default function construct<Props = ChicProps>(options: ConstructOptions<P
     function styled(props: Props, ref: Ref<Element>) {
       const constructedProps = <ChicProps>Object.assign({}, attrs, props);
       const constructedPropsKeys = Object.keys(constructedProps);
-      const propsKeys = Object.keys(props);
-
-      const as = constructedProps.as || target;
-      const hasValidAs = isType(as, ['function', 'object', 'string']);
-      const element = hasValidAs && !isType(target, 'object') ? as : target;
-      const isTargetObject = isType(target, 'object');
-
-      for (const prop of constructedPropsKeys) {
-        if (!isValidProp(prop) && !isTargetObject) {
-          delete constructedProps[prop];
-        }
-      }
 
       const isSingularClassName = isType(classNames, 'string');
       const classNamesArray = <string[]>(!isSingularClassName ? classNames : [classNames]);
@@ -39,8 +27,8 @@ export default function construct<Props = ChicProps>(options: ConstructOptions<P
           continue;
         }
 
-        for (const prop of propsKeys) {
-          const propValue = (<ChicProps>props)[prop];
+        for (const prop of constructedPropsKeys) {
+          const propValue = constructedProps[prop];
 
           if (!prefixes.some((prefix) => !!prop.match(`^${prefix}`)) || !propValue) {
             continue;
@@ -60,6 +48,17 @@ export default function construct<Props = ChicProps>(options: ConstructOptions<P
         }
 
         constructedProps.className = cx(stylesLookup, modifiers, constructedProps.className);
+      }
+
+      const as = constructedProps.as || target;
+      const hasValidAs = isType(as, ['function', 'object', 'string']);
+      const element = hasValidAs && !isType(target, 'object') ? as : target;
+      const isTargetObject = isType(target, 'object');
+
+      for (const prop of constructedPropsKeys) {
+        if (!isValidProp(prop) && !isTargetObject) {
+          delete constructedProps[prop];
+        }
       }
 
       const propsToForward = Object.assign({}, constructedProps, ref ? { ref } : {});
