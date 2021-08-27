@@ -1,11 +1,16 @@
 {
   "name": "chic-modules",
   "version": "0.1.1",
+  "type": "module",
   "sideEffects": false,
   "description": "A familiar styled-like api for working with css-modules",
   "license": "MIT",
   "author": "Liam Howell <liam@liam.codes>",
-  "main": "./dist/chic-modules.js",
+  "main": "./dist/chic-modules.cjs",
+  "module": "./dist/chic-modules.esm.js",
+  "exports": "./dist/chic-modules.modern.js",
+  "unpkg": "./dist/chic-modules.umd.js",
+  "source": "./src/index.ts",
   "typings": "./types/index.d.ts",
   "scripts": {
     "benchmark": "yarn upgrade chic-modules --silent && ts-node ./benchmarks",
@@ -20,13 +25,6 @@
     "prepare": "husky install",
     "release": "np --no-release-draft",
     "test": "jest --coverage"
-  },
-  "publishConfig": {
-    "source": "./src/index.ts",
-    "exports": "./dist/chic-modules.modern.js",
-    "main": "./dist/chic-modules.js",
-    "module": "./dist/chic-modules.module.js",
-    "unpkg": "./dist/chic-modules.umd.js"
   },
   "browserslist": [
     "defaults",

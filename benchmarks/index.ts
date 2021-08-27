@@ -1,5 +1,5 @@
 import Benchmark from 'benchmark';
-import createCanary from '../dist/chic-modules.module';
+import createCanary from '../dist/chic-modules.esm';
 import createLatest from 'chic-modules';
 import react, { FunctionComponent } from 'react';
 import styles from '../test/__mocks__/styles.module.json';
