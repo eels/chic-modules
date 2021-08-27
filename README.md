@@ -1,13 +1,13 @@
 <div align="center">
-	<h1>
-		<br />
-		<div>:sparkles:</div>
-		<br />
-		<div>Chic Modules</div>
-		<br />
-	</h1>
+  <h1>
+    <br />
+    <div>:sparkles:</div>
+    <br />
+    <div>Chic Modules</div>
+    <br />
+  </h1>
   <br />
-	<div>A familiar styled-like api for working with css-modules</div>
+  <div>A familiar styled-like api for working with css-modules</div>
   <br />
   <a href="https://www.npmjs.com/package/chic-modules"><img src="https://img.shields.io/npm/v/chic-modules?style=flat-square" /></a>
   <a href="https://www.npmjs.com/package/chic-modules"><img src="https://img.shields.io/npm/dm/chic-modules?style=flat-square" /></a>
@@ -23,7 +23,7 @@ Sing loud and proud! Let the world know that you're using **chic-modules**
 
 [![styled with: chic-modules](https://img.shields.io/badge/styled%20with-%E2%9C%A8%20chic--modules-blue?style=flat-square)](https://github.com/eels/chic-modules)
 
-```md
+```
 [![styled with: chic-modules](https://img.shields.io/badge/styled%20with-%E2%9C%A8%20chic--modules-blue?style=flat-square)](https://github.com/eels/chic-modules)
 ```
 
