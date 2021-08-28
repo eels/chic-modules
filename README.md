@@ -7,7 +7,7 @@
     <br />
   </h1>
   <br />
-  <div>A familiar styled-like api for working with css-modules</div>
+  <div>A familiar styled-like api for working with css-modules in React</div>
   <br />
   <a href="https://www.npmjs.com/package/chic-modules"><img src="https://img.shields.io/npm/v/chic-modules?style=flat-square" /></a>
   <a href="https://www.npmjs.com/package/chic-modules"><img src="https://img.shields.io/npm/dm/chic-modules?style=flat-square" /></a>
