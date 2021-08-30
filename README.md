@@ -23,6 +23,19 @@ I adore the styled pattern for composing React components, however, I also love 
 
 There are some trade-offs with a non-css-in-js solution though. Since it still outputs a build-time compiled stylesheet, runtime styles are a no-no. While preprocessors — like SCSS — go a long way to bridge that gap, they don't completely alleviate the problem. But if you don't need on-the-fly styling, or you're going to use css-modules anyway, then hopefully this can be the solution for you too!
 
+## Contents
+
+- [Example](#example)
+- [Style Modifiers](#style-modifiers)
+- [Sharing Styles](#sharing-styles)
+- [Using `as`](#using-as)
+- [Using `attrs`](#using-attrs)
+- [TypeScript](#typescript)
+- [Browser Support](#browser-support)
+- [Badge](#badge)
+- [License](#license)
+- [Acknowledgments](#acknowledgments)
+
 ## Example
 
 ```scss
@@ -53,11 +66,11 @@ import styles from './application.css';
 // required styles object as an argument
 const styled = create(styles);
 
-// Create a <Wrapper> react component that inherits the `.wrapper`
+// Create a <Wrapper> React component that inherits the `.wrapper`
 // class from the styles object and renders a <section> html element
 const Wrapper = styled.section('wrapper');
 
-// Create a <Title> react component that inherits the `.title`
+// Create a <Title> React component that inherits the `.title`
 // class from the styles object and renders a <h1> html element
 const Title = styled.h1('title');
 
@@ -77,9 +90,162 @@ This is what you'll see in your browser:
 
 [Open in CodeSandbox](https://codesandbox.io/s/brave-lewin-ofw92?file=/src/components/application.jsx)
 
+## Style Modifiers
+
+As I briefly touched upon in the opening Motivation statement, my biggest gripe when using css-modules is the cumbersome nature of adding "modifier" class names to components. Where I believe `chic-modules` really shines is in its attempt to solve this problem.
+
+Taking a look at this pretty standard setup using the [classnames](https://www.npmjs.com/package/classnames) package, you can see that a lot of extra steps are required to attach conditional class names to a component. This problem only gets worse when you try to go it alone without a class name utility package.
+
+### :no_good_woman: Cumbersome
+
+```jsx
+import React from 'react';
+import classnames from 'classnames';
+import styles from './button.css';
+
+function Button({ children, isPrimary }) {
+  const classes = classnames(
+    'button',
+    {
+      [styles['button--primary']]: isPrimary
+    }
+  );
+
+  return (
+    <button classNames={classes}>{children}</button>
+  );
+}
+
+<Button isPrimary />
+// outputs <button class="button button--primary">
+```
+
+On the other hand, `chic-modules` can infer when a prop is being used as a style modifier and automagically add the relevant modifier class if it exists in the styles object to the component.
+
+### :sunglasses: Chic
+
+```jsx
+import React from 'react';
+import create from 'chic-modules';
+import styles from './button.css';
+
+const styled = create(styles);
+const Button = styled.button('button');
+
+<Button isPrimary />
+// outputs <button class="button button--primary">
+```
+
+Any prop can be used to infer a style modifier as long as it starts with `has`, `is` or `with` and its value evaluates as truthy. You can also pass string values to props prefixed with `with` and have that value used in the constructed modifier class.
+
+`chic-modules` expects that your styles follow the [BEM](http://getbem.com/naming/) naming convention, so when using this package ensure that your stylesheet aligns with this structure.
+
+```jsx
+<Button hasBorder isPrimary withTextColor="black" />
+// outputs <button class="button button--border button--primary button--text-color-black">
+```
+
+## Sharing Styles
+
+You can extend an existing "chic" component, or just about any component so long as it accepts the `classNames` prop, and supply it with the class names you wish to attach.
+
+```scss
+// button.css
+
+.button {
+  color: palevioletred;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid palevioletred;
+  border-radius: 3px;
+}
+
+.tomato-button {
+  color: tomato;
+  border-color: tomato;
+}
+```
+
+```jsx
+// button.jsx
+
+const Button = styled.button('button');
+// outputs <button class="button">
+
+const TomatoButton = styled(Button, 'tomato-button');
+// outputs <button class="button tomato-button">
+```
+
+## Using `as`
+
+In addition, you can also override the underlying HTML element by passing the `as` prop — which accepts either a string or another component. Using another component as the value will also extend its styles, similar to the above example.
+
+```jsx
+const Button = styled.button('button');
+
+const TomatoButton = styled.button('tomato-button');
+
+// The component will render as a `div` element instead of a `button`
+<Button as='div' />
+
+// The component will inherit the properties of, and render as, the
+// `TomatoButton` component
+<Button as={TomatoButton} />
+```
+
+## Using `attrs`
+
+Sometimes you know ahead of time that your component is always going to have the same static props, such as an input element having a `type` property. By using the `attrs` constructor you can implicitly set any static prop values that should be passed down to every instance of your "chic" component.
+
+```jsx
+const TextField = styled.input.attrs({ type: 'text' })('input-text');
+
+// This will render with the `type` attribute implicitly set
+// from the original declaration
+<TextField />
+
+// You can also locally override any attributes that are defined above
+<TextField type='email' />
+```
+
+```jsx
+// For extended components, you can define attributes in the same way
+const EmailField = styled.attrs({ type: 'email' })(TextField, 'input-email');
+```
+
+## TypeScript
+
+`chic-modules` comes built-in with type definitions, making it super easy to get started with your TypeScript project.
+
+If you want to ensure your "chic" components are type-safe then pass your Type Assertions in the following way:
+
+```jsx
+interface ButtonProps {
+  size: 'small' | 'large';
+}
+
+const Button = styled.button<ButtonProps>('button');
+
+// Oops! This will throw a type error because the `size` prop
+// has not been defined
+<Button />
+
+// Life in beautiful type-safe harmony
+<Button size='small' />
+```
+
+## Browser Support
+
+`chic-modules` should work in all major modern browsers out-of-the-box (Chrome, Edge, Firefox, Safari).
+
+To add support for browsers IE 11 and older, ensure you add polyfills for the following features:
+
+- [Object.assign()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign#polyfill)
+
 ## Badge
 
-Sing loud and proud! Let the world know that you're using **chic-modules**
+Sing loud and proud! Let the world know that you're using `chic-modules`
 
 [![styled with: chic-modules](https://img.shields.io/badge/styled%20with-%E2%9C%A8%20chic--modules-blue?style=flat-square)](https://github.com/eels/chic-modules)
 
