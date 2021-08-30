@@ -7,7 +7,7 @@
     <br />
   </h1>
   <br />
-  <div>A familiar styled-like api for working with css-modules in React</div>
+  <div>A familiar styled-like API for working with css-modules in React</div>
   <br />
   <a href="https://www.npmjs.com/package/chic-modules"><img src="https://img.shields.io/npm/v/chic-modules?style=flat-square" /></a>
   <a href="https://www.npmjs.com/package/chic-modules"><img src="https://img.shields.io/npm/dm/chic-modules?style=flat-square" /></a>
@@ -19,7 +19,7 @@
 
 ## Motivation
 
-I adore the styled pattern for composing React components, however, I also love css-modules and separating concerns. Life isn't all sunshine and roses though. Complex class compositions often result in ugly inline ternary operators for conditional class names and style modifiers. I wanted to create a compromise, or "best-of-both-worlds" solution, that wraps a standard css-modules implementation in a well-established api.
+I adore the styled pattern for composing React components, however, I also love css-modules and separating concerns. Life isn't all sunshine and roses though. Complex class compositions often result in ugly inline ternary operators for conditional class names and style modifiers. I wanted to create a compromise, or "best-of-both-worlds" solution, that wraps a standard css-modules implementation in a well-established API.
 
 There are some trade-offs with a non-css-in-js solution though. Since it still outputs a build-time compiled stylesheet, runtime styles are a no-no. While preprocessors — like SCSS — go a long way to bridge that gap, they don't completely alleviate the problem. But if you don't need on-the-fly styling, or you're going to use css-modules anyway, then hopefully this can be the solution for you too!
 

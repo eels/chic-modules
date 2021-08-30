@@ -3,7 +3,7 @@
   "version": "0.1.2",
   "type": "module",
   "sideEffects": false,
-  "description": "A familiar styled-like api for working with css-modules in React",
+  "description": "A familiar styled-like API for working with css-modules in React",
   "license": "MIT",
   "author": "Liam Howell <liam@liam.codes>",
   "main": "./dist/chic-modules.cjs",
