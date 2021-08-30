@@ -27,8 +27,7 @@
     "test": "jest --coverage"
   },
   "browserslist": [
-    "defaults",
-    "ie >= 11"
+    "defaults"
   ],
   "files": [
     "dist/",
