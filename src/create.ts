@@ -3,22 +3,22 @@ import tags from '../types/tags';
 import { Attrs, CSSModule, ChicFactory, ChicFunction, ChicTagFunction } from '../types';
 
 export default function create(styles: CSSModule) {
-  const Chic: ChicFunction = (target, classNames, overrideStyles?) => {
+  const Chic: ChicFunction = (target, classNames, additionalStyles?) => {
     return construct({
       attrs: {},
       classNames: classNames,
-      styles: overrideStyles ?? styles,
+      styles: Object.assign({}, styles, additionalStyles ?? {}),
       target: target,
     });
   };
 
   Object.defineProperty(Chic, 'attrs', {
     value: function (attrs: Attrs): ChicFunction {
-      return (target, classNames, overrideStyles?) => {
+      return (target, classNames, additionalStyles?) => {
         return construct({
           attrs: attrs,
           classNames: classNames,
-          styles: overrideStyles ?? styles,
+          styles: Object.assign({}, styles, additionalStyles ?? {}),
           target: target,
         });
       };
@@ -26,22 +26,22 @@ export default function create(styles: CSSModule) {
   });
 
   const ChicTags = tags.reduce((object, tag) => {
-    const ChicTag: ChicTagFunction = (classNames, overrideStyles?) => {
+    const ChicTag: ChicTagFunction = (classNames, additionalStyles?) => {
       return construct({
         attrs: {},
         classNames: classNames,
-        styles: overrideStyles ?? styles,
+        styles: Object.assign({}, styles, additionalStyles ?? {}),
         target: tag,
       });
     };
 
     Object.defineProperty(ChicTag, 'attrs', {
       value: function (attrs: Attrs): ChicTagFunction {
-        return (classNames, overrideStyles?) => {
+        return (classNames, additionalStyles?) => {
           return construct({
             attrs: attrs,
             classNames: classNames,
-            styles: overrideStyles ?? styles,
+            styles: Object.assign({}, styles, additionalStyles ?? {}),
             target: tag,
           });
         };

@@ -2,7 +2,7 @@ import construct from '../src/construct';
 import create from '../src/create';
 import styles from './__mocks__/styles.module.json';
 import tags from '../types/tags';
-import { ConstructOptions } from '../types';
+import { CSSModule, ConstructOptions } from '../types';
 
 jest.mock('../src/construct', () => jest.fn());
 
@@ -80,6 +80,24 @@ describe('create', () => {
     };
 
     styled.input.attrs(parameters.attrs)('input');
+    expect(construct).toBeCalledWith(parameters);
+  });
+
+  it('should call `construct` with the required additional styles', () => {
+    const styled = create(styles);
+
+    const additionalStyles: CSSModule = {
+      'additional-heading': 'additional-heading',
+    };
+
+    const parameters: ConstructOptions = {
+      attrs: {},
+      classNames: 'heading',
+      styles: Object.assign({}, styles, additionalStyles),
+      target: 'h1',
+    };
+
+    styled.h1('heading', additionalStyles);
     expect(construct).toBeCalledWith(parameters);
   });
 });
