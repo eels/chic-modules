@@ -39,7 +39,7 @@ There are some trade-offs with a non-css-in-js solution though. Since it still o
 ## Example
 
 ```scss
-// application.css
+// application.module.css
 
 .wrapper {
   padding: 4em;
@@ -60,7 +60,7 @@ import React from 'react';
 
 import create from 'chic-modules';
 
-import styles from './application.css';
+import styles from './application.module.css';
 
 // Call the chic-modules `create` factory and pass the
 // required styles object as an argument
@@ -101,7 +101,7 @@ Taking a look at this pretty standard setup using the [classnames](https://www.n
 ```jsx
 import React from 'react';
 import classnames from 'classnames';
-import styles from './button.css';
+import styles from './button.module.css';
 
 function Button({ children, isPrimary }) {
   const classes = classnames(
@@ -127,7 +127,7 @@ On the other hand, `chic-modules` can infer when a prop is being used as a style
 ```jsx
 import React from 'react';
 import create from 'chic-modules';
-import styles from './button.css';
+import styles from './button.module.css';
 
 const styled = create(styles);
 const Button = styled.button('button');
@@ -150,7 +150,7 @@ Any prop can be used to infer a style modifier as long as it starts with `has`, 
 You can extend an existing "chic" component, or just about any component so long as it accepts the `classNames` prop, and supply it with the class names you wish to attach.
 
 ```scss
-// button.css
+// button.module.css
 
 .button {
   color: palevioletred;
