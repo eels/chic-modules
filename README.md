@@ -30,6 +30,7 @@ There are some trade-offs with a non-css-in-js solution though. Since it still o
 - [Sharing Styles](#sharing-styles)
 - [Using `as`](#using-as)
 - [Using `attrs`](#using-attrs)
+- [Multiple Base Class Names](#multiple-base-class-names)
 - [TypeScript](#typescript)
 - [Browser Support](#browser-support)
 - [Badge](#badge)
@@ -212,6 +213,22 @@ const TextField = styled.input.attrs({ type: 'text' })('input-text');
 ```jsx
 // For extended components, you can define attributes in the same way
 const EmailField = styled.attrs({ type: 'email' })(TextField, 'input-email');
+```
+
+## Multiple Base Class Names
+
+When instantiating a "chic" component, as an alternative to passing a single class name argument, you can also supply an array of class names. This is useful when you need your component to inherit styles from multiple sources. In addition to this, any style modifying prop will apply to each base class name as long as the modifier exists in the style object.
+
+However, if you need to apply a series of static class names, for use with a third-party library for instance, it is better to add them via the `attrs` constructor or the `className` prop instead.
+
+```jsx
+const Heading = styled.h1(['heading', 'homepage-heading']);
+
+<Heading />
+// outputs <h1 class="heading homepage-heading">
+
+<Heading hasUnderline />
+// outputs <h1 class="heading heading--underline homepage-heading homepage-heading--underline">
 ```
 
 ## TypeScript
