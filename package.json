@@ -1,20 +1,30 @@
 {
   "name": "chic-modules",
-  "version": "0.2.0",
   "type": "module",
-  "sideEffects": false,
+  "version": "0.2.0",
   "description": "A familiar styled-like API for working with css-modules in React",
-  "license": "MIT",
   "author": "Liam Howell <liam@liam.codes>",
-  "main": "./dist/chic-modules.cjs",
-  "module": "./dist/chic-modules.esm.js",
-  "exports": "./dist/chic-modules.modern.js",
-  "unpkg": "./dist/chic-modules.umd.js",
-  "source": "./src/index.ts",
+  "homepage": "https://github.com/eels/chic-modules#readme",
+  "repository": "https://github.com/eels/chic-modules",
+  "bugs": "https://github.com/eels/chic-modules/issues",
+  "license": "MIT",
   "typings": "./types/index.d.ts",
+  "sideEffects": false,
+  "main": "./dist/chic-modules.cjs",
+  "module": "./dist/chic-modules.module.js",
+  "umd:main": "./dist/chic-modules.umd.js",
+  "unpkg": "./dist/chic-modules.umd.js",
+  "exports": {
+    ".": {
+      "browser": "./dist/chic-modules.module.js",
+      "umd": "./dist/chic-modules.umd.js",
+      "import": "./dist/chic-modules.mjs",
+      "require": "./dist/chic-modules.cjs"
+    }
+  },
   "scripts": {
     "benchmark": "yarn upgrade chic-modules --silent && node ./benchmarks",
-    "build": "microbundle --entry ./src/index.ts --no-sourcemap",
+    "build": "microbundle --entry ./src/index.ts --raw --no-sourcemap",
     "clean": "rimraf ./dist",
     "format": "prettier './{benchmarks,src,test,types}/**/*.{js,ts,tsx}' --check",
     "format:fix": "yarn format --write",
@@ -43,9 +53,6 @@
     "react",
     "styled"
   ],
-  "homepage": "https://github.com/eels/chic-modules#readme",
-  "repository": "https://github.com/eels/chic-modules",
-  "bugs": "https://github.com/eels/chic-modules/issues",
   "dependencies": {
     "@emotion/is-prop-valid": "^1.1.0",
     "classcat": "^5.0.3",
