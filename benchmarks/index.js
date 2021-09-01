@@ -1,20 +1,12 @@
 import Benchmark from 'benchmark';
-import createCanary from '../dist/chic-modules.esm';
-import createLatest from 'chic-modules';
-import react, { FunctionComponent } from 'react';
-import styles from '../test/__mocks__/styles.module.json';
-import { renderToString } from 'react-dom/server';
+import createCanary from '../dist/chic-modules.cjs';
+import createLatest from '../node_modules/chic-modules/dist/chic-modules.cjs';
+import fs from 'fs';
+import react from 'react';
+import { renderToString } from 'react-dom/server.js';
 
-function renderComponent(Component: FunctionComponent) {
-  interface ComponentProps {
-    id: string;
-    hasBorder: boolean;
-    hasInvalidModifier: boolean;
-    isPrimary: boolean;
-    withWeight: string;
-  }
-
-  const rendered = react.createElement<ComponentProps>(Component, {
+function renderComponent(Component) {
+  const rendered = react.createElement(Component, {
     hasBorder: true,
     hasInvalidModifier: true,
     id: 'heading',
@@ -25,19 +17,20 @@ function renderComponent(Component: FunctionComponent) {
   renderToString(rendered);
 }
 
-function onBenchmarkStart(event: any) {
+function onBenchmarkStart(event) {
   console.log('Starting:', event.currentTarget.name);
 }
 
-function onBenchmarkError(error: any) {
+function onBenchmarkError(error) {
   console.log(error);
 }
 
-function onBenchmarkCycle(event: any) {
+function onBenchmarkCycle(event) {
   console.log('▸', String(event.target));
 }
 
 const suite = new Benchmark.Suite('chic-modules');
+const styles = JSON.parse(fs.readFileSync('./test/__mocks__/styles.module.json'));
 const styledCanary = createCanary(styles);
 const styledLatest = createLatest(styles);
 const classNamesArray = ['heading', 'hero'];
