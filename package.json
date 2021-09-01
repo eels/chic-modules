@@ -13,7 +13,7 @@
   "source": "./src/index.ts",
   "typings": "./types/index.d.ts",
   "scripts": {
-    "benchmark": "yarn upgrade chic-modules --silent && ts-node ./benchmarks",
+    "benchmark": "yarn upgrade chic-modules --silent && node ./benchmarks",
     "build": "microbundle --entry ./src/index.ts --no-sourcemap",
     "clean": "rimraf ./dist",
     "format": "prettier './{benchmarks,src,test,types}/**/*.{ts,tsx}' --check",
@@ -95,7 +95,6 @@
     "microbundle": "^0.13.3",
     "prettier": "^2.3.2",
     "rimraf": "^3.0.2",
-    "ts-node": "^10.2.1",
     "typescript": "^4.4.2"
   },
   "peerDependencies": {
