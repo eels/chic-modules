@@ -1,7 +1,6 @@
 import construct from '../src/construct';
 import create from '../src/create';
 import styles from './__mocks__/styles.module.json';
-import tags from '../types/tags';
 import { CSSModule, ConstructOptions } from '../types';
 
 jest.mock('../src/construct', () => jest.fn());
@@ -15,16 +14,13 @@ describe('create', () => {
     expect(styled.attrs).toBeInstanceOf(Function);
   });
 
-  it('should have all valid HTML5 elements defined as properties', () => {
+  it('should accept dynamic properties and return a function with `attrs` defined as a property', () => {
     const styled = create({});
 
-    for (const tag of tags) {
-      expect(styled).toHaveProperty(tag);
-      expect(styled[tag]).toBeInstanceOf(Function);
-
-      expect(styled[tag]).toHaveProperty('attrs');
-      expect(styled[tag].attrs).toBeInstanceOf(Function);
-    }
+    expect(styled).toHaveProperty('h1');
+    expect(styled.h1).toBeInstanceOf(Function);
+    expect(styled.h1).toHaveProperty('attrs');
+    expect(styled.h1.attrs).toBeInstanceOf(Function);
   });
 
   it('should call `construct` with the required options (basic)', () => {

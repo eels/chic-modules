@@ -1,5 +1,4 @@
 import construct from './construct';
-import tags from '../types/tags';
 import { Attrs, CSSModule, ChicFactory, ChicFunction, ChicTagFunction } from '../types';
 
 export default function create(styles: CSSModule) {
@@ -25,39 +24,37 @@ export default function create(styles: CSSModule) {
     },
   });
 
-  const ChicTags = tags.reduce((object, tag) => {
-    const ChicTag: ChicTagFunction = (classNames, additionalStyles?) => {
-      return construct({
-        attrs: {},
-        classNames: classNames,
-        styles: Object.assign({}, styles, additionalStyles ?? {}),
-        target: tag,
+  const ChicProxy = new Proxy(Chic, {
+    get(target: ChicFactory, property: string) {
+      if (Reflect.has(target, property)) {
+        return Reflect.get(target, property);
+      }
+
+      const ChicTag: ChicTagFunction = (classNames, additionalStyles?) => {
+        return construct({
+          attrs: {},
+          classNames: classNames,
+          styles: Object.assign({}, styles, additionalStyles ?? {}),
+          target: property,
+        });
+      };
+
+      Object.defineProperty(ChicTag, 'attrs', {
+        value: function (attrs: Attrs): ChicTagFunction {
+          return (classNames, additionalStyles?) => {
+            return construct({
+              attrs: attrs,
+              classNames: classNames,
+              styles: Object.assign({}, styles, additionalStyles ?? {}),
+              target: property,
+            });
+          };
+        },
       });
-    };
 
-    Object.defineProperty(ChicTag, 'attrs', {
-      value: function (attrs: Attrs): ChicTagFunction {
-        return (classNames, additionalStyles?) => {
-          return construct({
-            attrs: attrs,
-            classNames: classNames,
-            styles: Object.assign({}, styles, additionalStyles ?? {}),
-            target: tag,
-          });
-        };
-      },
-    });
+      return ChicTag;
+    },
+  });
 
-    object[tag] = {
-      value: ChicTag,
-    };
-
-    return object;
-  }, Object.create({}));
-
-  Object.defineProperties(Chic, ChicTags);
-
-  Object.freeze(Chic);
-
-  return Chic as ChicFactory;
+  return ChicProxy as ChicFactory;
 }
