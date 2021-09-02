@@ -11,7 +11,7 @@
   <br />
   <a href="https://www.npmjs.com/package/chic-modules"><img src="https://img.shields.io/npm/v/chic-modules?style=flat-square" /></a>
   <a href="https://www.npmjs.com/package/chic-modules"><img src="https://img.shields.io/npm/dm/chic-modules?style=flat-square" /></a>
-  <a href="https://unpkg.com/chic-modules@latest/dist/chic-modules.esm.js"><img src="https://img.badgesize.io/https:/unpkg.com/chic-modules@latest/dist/chic-modules.esm.js?compression=gzip&style=flat-square" /></a>
+  <a href="https://unpkg.com/chic-modules@latest/dist/chic-modules.mjs"><img src="https://img.badgesize.io/https://unpkg.com/chic-modules@latest/dist/chic-modules.mjs?compression=gzip&style=flat-square" /></a>
   <br /><br />
   <pre>yarn add <a href="https://www.npmjs.com/package/chic-modules">chic-modules</a></pre>
   <h1></h1>
