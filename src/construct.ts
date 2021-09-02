@@ -52,12 +52,14 @@ export default function construct<Props = ChicProps>(options: ConstructOptions<P
 
       const as = constructedProps.as || target;
       const hasValidAs = isType(as, ['function', 'object', 'string']);
-      const element = hasValidAs && !isType(target, 'object') ? as : target;
       const isTargetObject = isType(target, 'object');
+      const element = hasValidAs && !isTargetObject ? as : target;
 
-      for (const prop of constructedPropsKeys) {
-        if (!isValidProp(prop) && !isTargetObject) {
-          delete constructedProps[prop];
+      if (!isTargetObject) {
+        for (const prop of constructedPropsKeys) {
+          if (!isValidProp(prop)) {
+            delete constructedProps[prop];
+          }
         }
       }
 
