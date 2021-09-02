@@ -1,6 +1,7 @@
 import cc from 'classcat';
 import convertCamelToKebabCase from './utils/convertCamelToKebabCase';
 import generateDisplayName from './utils/generateDisplayName';
+import hash from './utils/hash';
 import isType from './utils/isType';
 import isValidProp from '@emotion/is-prop-valid';
 import { ChicProps, ConstructOptions, ExtendableObject } from '../types';
@@ -10,8 +11,12 @@ export default function construct<Props = ChicProps>(options: ConstructOptions<P
   const { attrs, classNames, styles, target } = options;
 
   function wrapper() {
+    const cache: ExtendableObject = {};
+    const name = generateDisplayName(<any>target);
+
     function styled(props: Props, ref: Ref<Element>) {
       const constructedProps = <ChicProps>Object.assign({}, attrs, props);
+      const constructedPropsHash = hash(JSON.stringify(constructedProps));
       const constructedPropsKeys = Object.keys(constructedProps);
 
       const isSingularClassName = isType(classNames, 'string');
@@ -19,36 +24,42 @@ export default function construct<Props = ChicProps>(options: ConstructOptions<P
       const prefixes = ['has', 'is', 'with'];
       const prefixesRegex = new RegExp(`^(${prefixes.join('|')})`);
 
-      for (const className of classNamesArray) {
-        const stylesLookup = styles[className];
-        const modifiers: ExtendableObject<Props[Extract<keyof Props, string>]> = {};
+      if (!cache[constructedPropsHash]) {
+        for (const className of classNamesArray) {
+          const stylesLookup = styles[className];
+          const modifiers: ExtendableObject<Props[Extract<keyof Props, string>]> = {};
 
-        if (!stylesLookup) {
-          continue;
-        }
-
-        for (const prop of constructedPropsKeys) {
-          const propValue = constructedProps[prop];
-
-          if (!prefixes.some((prefix) => !!prop.match(`^${prefix}`)) || !propValue) {
+          if (!stylesLookup) {
             continue;
           }
 
-          const prefix = prop.match(prefixesRegex)?.[0];
-          const modifier = convertCamelToKebabCase(prop.replace(prefixesRegex, ''));
+          for (const prop of constructedPropsKeys) {
+            const propValue = constructedProps[prop];
 
-          const baseClassName = `${className}--${modifier.toLowerCase()}`;
-          const modifierValueExtention = prefix === 'with' ? `-${propValue}` : '';
-          const constructedClassName = `${baseClassName}${modifierValueExtention}`;
-          const constructedStylesLookup = styles[constructedClassName];
+            if (!prefixes.some((prefix) => !!prop.match(`^${prefix}`)) || !propValue) {
+              continue;
+            }
 
-          if (constructedStylesLookup) {
-            modifiers[constructedStylesLookup] = propValue;
+            const prefix = prop.match(prefixesRegex)?.[0];
+            const modifier = convertCamelToKebabCase(prop.replace(prefixesRegex, ''));
+
+            const baseClassName = `${className}--${modifier.toLowerCase()}`;
+            const modifierValueExtention = prefix === 'with' ? `-${propValue}` : '';
+            const constructedClassName = `${baseClassName}${modifierValueExtention}`;
+            const constructedStylesLookup = styles[constructedClassName];
+
+            if (constructedStylesLookup) {
+              modifiers[constructedStylesLookup] = propValue;
+            }
           }
+
+          constructedProps.className = cc([stylesLookup, modifiers, constructedProps.className]);
         }
 
-        constructedProps.className = cc([stylesLookup, modifiers, constructedProps.className]);
+        cache[constructedPropsHash] = constructedProps.className;
       }
+
+      constructedProps.className = cache[constructedPropsHash];
 
       const as = constructedProps.as || target;
       const hasValidAs = isType(as, ['function', 'object', 'string']);
@@ -68,7 +79,7 @@ export default function construct<Props = ChicProps>(options: ConstructOptions<P
       return createElement(element, propsToForward, constructedProps.children ?? null);
     }
 
-    Object.defineProperty(styled, 'name', { value: generateDisplayName(<any>target) });
+    Object.defineProperty(styled, 'name', { value: name });
 
     return forwardRef(styled);
   }

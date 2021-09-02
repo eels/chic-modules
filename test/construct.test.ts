@@ -1,8 +1,8 @@
 import construct from '../src/construct';
 import styles from './__mocks__/styles.module.json';
 import { ConstructOptions } from '../types';
-import { createElement, createRef } from 'react';
-import { render, screen } from '@testing-library/react';
+import { createElement, createRef, useState } from 'react';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 describe('construct', () => {
   it('should render a basic component with no additional attrs', () => {
@@ -204,5 +204,37 @@ describe('construct', () => {
     expect(ref.current).toBeNull();
     render(createElement(construct(parameters), { ref: ref }));
     expect(typeof ref.current).toBe('object');
+  });
+
+  it('should cache the computed class names for subsequent renders (coverage report)', () => {
+    const parameters: ConstructOptions = {
+      attrs: {},
+      classNames: 'input',
+      styles: styles,
+      target: 'button',
+    };
+
+    const ButtonA = construct(parameters);
+    const ButtonB = construct(parameters);
+
+    const Wrapper = () => {
+      const [counter, setCounter] = useState(0);
+      const increase = () => setCounter(counter + 1);
+
+      return createElement('div', {
+        children: [
+          createElement(ButtonA, { children: counter, key: 0, onClick: increase }),
+          createElement(ButtonB, { children: 'static button', key: 1 }),
+        ],
+      });
+    };
+
+    render(createElement(Wrapper));
+
+    expect(parseInt(screen.getAllByRole('button')[0].innerHTML)).toBe(0);
+
+    fireEvent.click(screen.getAllByRole('button')[0]);
+
+    expect(parseInt(screen.getAllByRole('button')[0].innerHTML)).toBe(1);
   });
 });
