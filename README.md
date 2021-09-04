@@ -101,7 +101,6 @@ Taking a look at this pretty standard setup using the [classnames](https://www.n
 ### :no_good_woman: Cumbersome
 
 ```jsx
-import React from 'react';
 import classnames from 'classnames';
 import styles from './button.module.css';
 
@@ -127,7 +126,6 @@ On the other hand, `chic-modules` can infer when a prop is being used as a style
 ### :sunglasses: Chic
 
 ```jsx
-import React from 'react';
 import create from 'chic-modules';
 import styles from './button.module.css';
 
@@ -185,7 +183,6 @@ In addition, you can also override the underlying HTML element by passing the `a
 
 ```jsx
 const Button = styled.button('button');
-
 const TomatoButton = styled.button('tomato-button');
 
 // The component will render as a `div` element instead of a `button`
