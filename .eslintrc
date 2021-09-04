@@ -42,10 +42,20 @@
     "@typescript-eslint/no-unused-vars": "error",
     "comma-dangle": ["error", "always-multiline"],
     "import/first": "error",
-    "import/newline-after-import": ["error", { "count": 1 }],
+    "import/newline-after-import": [
+      "error",
+      {
+        "count": 1
+      }
+    ],
     "no-unused-vars": "off",
     "prettier/prettier": "error",
-    "sort-destructure-keys/sort-destructure-keys": ["error", { "caseSensitive": true }],
+    "sort-destructure-keys/sort-destructure-keys": [
+      "error",
+      {
+        "caseSensitive": true
+      }
+    ],
     "sort-imports-es6-autofix/sort-imports-es6": [
       "error",
       {
@@ -63,7 +73,12 @@
         "named": "never"
       }
     ],
-    "valid-typeof": ["error", { "requireStringLiterals": false }]
+    "valid-typeof": [
+      "error",
+      {
+        "requireStringLiterals": false
+      }
+    ]
   },
 
   "overrides": [
