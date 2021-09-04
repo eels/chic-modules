@@ -47,4 +47,4 @@ export type ChicTagWithAttrsInterface = {
 
 export type ChicFactory = ChicFunction & ChicAttrsInterface & ChicTagWithAttrsInterface;
 
-export default function create(styles: CSSModule): ChicFactory;
+export default function create(styles?: CSSModule): ChicFactory;

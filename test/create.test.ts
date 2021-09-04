@@ -96,4 +96,22 @@ describe('create', () => {
     styled.h1('heading', additionalStyles);
     expect(construct).toBeCalledWith(parameters);
   });
+
+  it('should allow the user to omit passing a value to the `create` method', () => {
+    const styled = create();
+
+    const additionalStyles: CSSModule = {
+      'additional-heading': 'additional-heading',
+    };
+
+    const parameters: ConstructOptions = {
+      attrs: {},
+      classNames: 'heading',
+      styles: additionalStyles,
+      target: 'h1',
+    };
+
+    styled.h1('heading', additionalStyles);
+    expect(construct).toBeCalledWith(parameters);
+  });
 });

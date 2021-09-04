@@ -1,7 +1,7 @@
 import construct from './construct';
 import { Attrs, CSSModule, ChicFactory, ChicFunction, ChicTagFunction } from '../types';
 
-export default function create(styles: CSSModule) {
+export default function create(styles: CSSModule = {}) {
   const Chic: ChicFunction = (target, classNames, additionalStyles?) => {
     return construct({
       attrs: {},

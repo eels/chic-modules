@@ -30,6 +30,7 @@ There are some trade-offs with a non-css-in-js solution though. Since it still o
 - [Sharing Styles](#sharing-styles)
 - [Using `as`](#using-as)
 - [Using `attrs`](#using-attrs)
+- [Additional Styles](#additional-styles)
 - [Multiple Base Class Names](#multiple-base-class-names)
 - [TypeScript](#typescript)
 - [Browser Support](#browser-support)
@@ -213,6 +214,39 @@ const TextField = styled.input.attrs({ type: 'text' })('input-text');
 ```jsx
 // For extended components, you can define attributes in the same way
 const EmailField = styled.attrs({ type: 'email' })(TextField, 'input-email');
+```
+
+## Additional Styles
+
+When extending a component, you may need to reference an additional style object from the one you used during the initial `create` call. While you could use JavaScript to merge all the required objects together, `chic-modules` allows you to pass an additional style object as a final argument. This way you can keep your code clean and module structure in-tact.
+
+```jsx
+import create from 'chic-modules';
+import buttonStyles from './button.module.css';
+import tomatoButtonStyles from './tomato-button.module.css';
+
+const styled = create(buttonStyles);
+const Button = styled.button('button');
+const TomatoButton = styled(Button, 'tomato-button', tomatoButtonStyles);
+
+<Button />
+// outputs <button class="button">
+
+<TomatoButton />
+// outputs <button class="button tomato-button">
+```
+
+In fact, if you prefer, you can completely omit passing a styles object to the `create` call and instead supply your styles object directly to the component construction method as required.
+
+```jsx
+import create from 'chic-modules';
+import buttonStyles from './button.module.css';
+
+const styled = create();
+const Button = styled.button('button', buttonStyles);
+
+<Button />
+// outputs <button class="button">
 ```
 
 ## Multiple Base Class Names
