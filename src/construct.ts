@@ -1,4 +1,5 @@
 import cc from 'classcat';
+import circularStringify from './utils/circularStringify';
 import convertCamelToKebabCase from './utils/convertCamelToKebabCase';
 import generateDisplayName from './utils/generateDisplayName';
 import hash from './utils/hash';
@@ -16,7 +17,7 @@ export default function construct<Props = ChicProps>(options: ConstructOptions<P
 
     function styled(props: Props, ref: Ref<Element>) {
       const constructedProps = <ChicProps>Object.assign({}, attrs, props);
-      const constructedPropsHash = hash(JSON.stringify(constructedProps));
+      const constructedPropsHash = hash(circularStringify(constructedProps));
       const constructedPropsKeys = Object.keys(constructedProps);
 
       const isSingularClassName = isType(classNames, 'string');
