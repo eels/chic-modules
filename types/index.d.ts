@@ -27,7 +27,7 @@ export type ConstructOptions<T = ChicProps> = {
 export type ChicFunction = <T = ChicProps>(
   target: ChicTarget<T>,
   classNames: ClassNames,
-  additionalStyles?: CSSModule
+  additionalStyles?: CSSModule,
 ) => ChicComponent<T>;
 
 export type ChicAttrsInterface = {
@@ -36,7 +36,7 @@ export type ChicAttrsInterface = {
 
 export type ChicTagFunction = <T = ChicProps>(
   classNames: ClassNames,
-  additionalStyles?: CSSModule
+  additionalStyles?: CSSModule,
 ) => ChicComponent<T>;
 
 export type ChicTagWithAttrsInterface = {
