@@ -1,0 +1,3 @@
+{
+  "{benchmarks,src,test,types}/**/*.{js,ts,tsx}": ["prettier --check", "eslint --cache"]
+}
