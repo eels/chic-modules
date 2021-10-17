@@ -60,9 +60,9 @@ There are some trade-offs with a non-css-in-js solution though. Since it still o
 
 import React from 'react';
 
-import create from 'chic-modules';
-
 import styles from './application.module.css';
+
+import { create } from 'chic-modules';
 
 // Call the chic-modules `create` factory and pass the
 // required styles object as an argument
@@ -105,19 +105,14 @@ import classnames from 'classnames';
 import styles from './button.module.css';
 
 function Button({ children, isPrimary }) {
-  const classes = classnames(
-    'button',
-    {
-      [styles['button--primary']]: isPrimary
-    }
-  );
+  const classes = classnames('button', {
+    [styles['button--primary']]: isPrimary,
+  });
 
-  return (
-    <button classNames={classes}>{children}</button>
-  );
+  return <button classNames={classes}>{children}</button>;
 }
 
-<Button isPrimary />
+<Button isPrimary />;
 // outputs <button class="button button--primary">
 ```
 
@@ -126,13 +121,13 @@ On the other hand, `chic-modules` can infer when a prop is being used as a style
 ### :sunglasses: Chic
 
 ```jsx
-import create from 'chic-modules';
 import styles from './button.module.css';
+import { create } from 'chic-modules';
 
 const styled = create(styles);
 const Button = styled.button('button');
 
-<Button isPrimary />
+<Button isPrimary />;
 // outputs <button class="button button--primary">
 ```
 
@@ -141,7 +136,7 @@ Any prop can be used to infer a style modifier as long as it starts with `has`, 
 `chic-modules` expects that your styles follow the [BEM](http://getbem.com/naming/) naming convention, so when using this package ensure that your stylesheet aligns with this structure.
 
 ```jsx
-<Button hasBorder isPrimary withTextColor="black" />
+<Button hasBorder isPrimary withTextColor='black' />
 // outputs <button class="button button--border button--primary button--text-color-black">
 ```
 
@@ -218,9 +213,9 @@ const EmailField = styled.attrs({ type: 'email' })(TextField, 'input-email');
 When extending a component, you may need to reference an additional style object from the one you used during the initial `create` call. While you could use JavaScript to merge all the required objects together, `chic-modules` allows you to pass an additional style object as a final argument. This way you can keep your code clean and module structure in-tact.
 
 ```jsx
-import create from 'chic-modules';
 import buttonStyles from './button.module.css';
 import tomatoButtonStyles from './tomato-button.module.css';
+import { create } from 'chic-modules';
 
 const styled = create(buttonStyles);
 const Button = styled.button('button');
@@ -236,13 +231,13 @@ const TomatoButton = styled(Button, 'tomato-button', tomatoButtonStyles);
 In fact, if you prefer, you can completely omit passing a styles object to the `create` call and instead supply your styles object directly to the component construction method as required.
 
 ```jsx
-import create from 'chic-modules';
 import buttonStyles from './button.module.css';
+import { create } from 'chic-modules';
 
 const styled = create();
 const Button = styled.button('button', buttonStyles);
 
-<Button />
+<Button />;
 // outputs <button class="button">
 ```
 
