@@ -1,11 +1,13 @@
 import cc from 'classcat';
-import circularStringify from './utils/circularStringify';
-import convertCamelToKebabCase from './utils/convertCamelToKebabCase';
-import generateDisplayName from './utils/generateDisplayName';
-import hash from './utils/hash';
-import isType from './utils/isType';
+import circularStringify from '../utils/circularStringify';
+import convertCamelToKebabCase from '../utils/convertCamelToKebabCase';
+import generateDisplayName from '../utils/generateDisplayName';
+import hash from '../utils/hash';
+import insertDynamicCSSRule from '../utils/insertDynamicCSSRule';
+import isType from '../utils/isType';
 import isValidProp from '@emotion/is-prop-valid';
-import { ChicProps, ConstructOptions, ExtendableObject } from '../types';
+import prefixCSSDeclaration from '../utils/prefixCSSDeclaration';
+import { ChicProps, ConstructOptions, ExtendableObject } from '../../types';
 import { Ref, createElement, forwardRef } from 'react';
 
 export default function construct<Props = ChicProps>(options: ConstructOptions<Props>) {
@@ -72,6 +74,34 @@ export default function construct<Props = ChicProps>(options: ConstructOptions<P
           if (!isValidProp(prop)) {
             delete constructedProps[prop];
           }
+        }
+
+        if (constructedProps.style) {
+          const classNamesHash = hash(classNamesArray.join(''));
+          const stylesHash = hash(JSON.stringify(constructedProps.style));
+          const combinedClassNameStyleHash = hash(`${classNamesHash}${stylesHash}`).toString(36);
+
+          if (!cache[combinedClassNameStyleHash]) {
+            const stylesClassName = `cm${combinedClassNameStyleHash}`;
+            const styles = <string[]>[];
+
+            constructedProps.className = cc([constructedProps.className, stylesClassName]);
+
+            for (const [property, value] of Object.entries(constructedProps.style)) {
+              const kebabCasedProperty = convertCamelToKebabCase(property);
+              const rule = prefixCSSDeclaration(kebabCasedProperty, value);
+
+              styles.push(rule);
+            }
+
+            insertDynamicCSSRule(stylesClassName, styles);
+
+            cache[combinedClassNameStyleHash] = constructedProps.className;
+          }
+
+          delete constructedProps.style;
+
+          constructedProps.className = cache[combinedClassNameStyleHash];
         }
       }
 
