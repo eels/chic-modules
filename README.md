@@ -104,7 +104,7 @@ Taking a look at this pretty standard setup using the [classnames](https://www.n
 import classnames from 'classnames';
 import styles from './button.module.css';
 
-function Button({ children, isPrimary }) {
+function MyButton({ children, isPrimary }) {
   const classes = classnames(
     'button',
     {
@@ -112,12 +112,9 @@ function Button({ children, isPrimary }) {
     }
   );
 
-  return (
-    <button classNames={classes}>{children}</button>
-  );
+  return <button classNames={classes}>{children}</button>;
 }
 
-<Button isPrimary />
 // outputs <button class="button button--primary">
 ```
 
@@ -132,7 +129,10 @@ import { create } from 'chic-modules';
 const styled = create(styles);
 const Button = styled.button('button');
 
-<Button isPrimary />
+function MyButton({ children, isPrimary }) {
+  return <Button isPrimary={isPrimary}>{children}</Button>;
+}
+
 // outputs <button class="button button--primary">
 ```
 
