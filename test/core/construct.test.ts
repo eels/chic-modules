@@ -1,6 +1,6 @@
-import construct from '../src/construct';
-import styles from './__mocks__/styles.module.json';
-import { ConstructOptions } from '../types';
+import construct from '../../src/core/construct';
+import styles from '../__mocks__/styles.module.json';
+import { ConstructOptions } from '../../types';
 import { createElement, createRef, useState } from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 
