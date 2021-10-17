@@ -17,7 +17,7 @@ describe('getDynamicStyleSheet', () => {
     expect(element).toEqual(sheet);
   });
 
-  it('should create and return the dynamic style element if there is none present', () => {
+  it('should return the pre-existing dynamic style element if present', () => {
     const customSheetElement = document.createElement('style');
 
     customSheetElement.setAttribute('data-chic', '');
