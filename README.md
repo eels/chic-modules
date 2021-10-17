@@ -105,14 +105,19 @@ import classnames from 'classnames';
 import styles from './button.module.css';
 
 function Button({ children, isPrimary }) {
-  const classes = classnames('button', {
-    [styles['button--primary']]: isPrimary,
-  });
+  const classes = classnames(
+    'button',
+    {
+      [styles['button--primary']]: isPrimary
+    }
+  );
 
-  return <button classNames={classes}>{children}</button>;
+  return (
+    <button classNames={classes}>{children}</button>
+  );
 }
 
-<Button isPrimary />;
+<Button isPrimary />
 // outputs <button class="button button--primary">
 ```
 
@@ -127,7 +132,7 @@ import { create } from 'chic-modules';
 const styled = create(styles);
 const Button = styled.button('button');
 
-<Button isPrimary />;
+<Button isPrimary />
 // outputs <button class="button button--primary">
 ```
 
@@ -136,7 +141,7 @@ Any prop can be used to infer a style modifier as long as it starts with `has`, 
 `chic-modules` expects that your styles follow the [BEM](http://getbem.com/naming/) naming convention, so when using this package ensure that your stylesheet aligns with this structure.
 
 ```jsx
-<Button hasBorder isPrimary withTextColor='black' />
+<Button hasBorder isPrimary withTextColor="black" />
 // outputs <button class="button button--border button--primary button--text-color-black">
 ```
 
@@ -237,7 +242,7 @@ import { create } from 'chic-modules';
 const styled = create();
 const Button = styled.button('button', buttonStyles);
 
-<Button />;
+<Button />
 // outputs <button class="button">
 ```
 
