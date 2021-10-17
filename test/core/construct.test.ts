@@ -192,6 +192,19 @@ describe('construct', () => {
     expect(screen.getByRole('heading')).toHaveClass('heading heading--primary');
   });
 
+  it('should convert `style` props to a dynamically rendered class name', () => {
+    const parameters: ConstructOptions = {
+      attrs: {},
+      classNames: 'heading',
+      styles: styles,
+      target: 'h1',
+    };
+
+    render(createElement(construct(parameters), { style: { color: 'red' } }));
+    expect(screen.getByRole('heading')).toHaveClass('cmq487y5');
+    expect(screen.getByRole('heading')).not.toHaveAttribute('style');
+  });
+
   it('should successfully forward and update component refs', () => {
     const ref = createRef<Element>();
     const parameters: ConstructOptions = {
@@ -224,7 +237,7 @@ describe('construct', () => {
       return createElement('div', {
         children: [
           createElement(ButtonA, { children: counter, key: 0, onClick: increase }),
-          createElement(ButtonB, { children: 'static button', key: 1 }),
+          createElement(ButtonB, { children: 'static button', key: 1, style: { color: 'red' } }),
         ],
       });
     };
