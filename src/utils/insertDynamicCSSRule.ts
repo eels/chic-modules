@@ -5,10 +5,10 @@ export default function insertDynamicCSSRule(selector: string, styles: string[])
   const constructedRule = `.${selector}{${styles.join('')}}`;
 
   if (typeof window === 'object') {
-    const sheet = getDynamicStyleSheet().sheet;
+    const sheet = getDynamicStyleSheet().sheet as CSSStyleSheet;
     let isRuleAlreadyDefined = false;
 
-    for (const rule of sheet?.cssRules || []) {
+    for (const rule of sheet.cssRules) {
       const sheetStyleRule = rule as CSSStyleRule;
 
       if (sheetStyleRule.selectorText === `.${selector}`) {
