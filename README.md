@@ -21,7 +21,9 @@
 
 I adore the styled pattern for composing React components, however, I also love css-modules and separating concerns. Life isn't all sunshine and roses though. Complex class compositions often result in ugly inline ternary operators for conditional class names and style modifiers. I wanted to create a compromise, or "best-of-both-worlds" solution, that wraps a standard css-modules implementation in a well-established API.
 
-There are some trade-offs with a non-css-in-js solution though. Since it still outputs a build-time compiled stylesheet, runtime styles are a no-no. While preprocessors — like SCSS — go a long way to bridge that gap, they don't completely alleviate the problem. But if you don't need on-the-fly styling, or you're going to use css-modules anyway, then hopefully this can be the solution for you too!
+There are some trade-offs with a non-css-in-js solution though. Since it still outputs a build-time compiled stylesheet, runtime styles are a no-no*. While preprocessors — like SCSS — go a long way to bridge that gap, they don't completely alleviate the problem. But if you don't need on-the-fly styling, or you're going to use css-modules anyway, then hopefully this can be the solution for you too!
+
+\* Rejoice! This is no longer true, see the [Dynamic Styles](#dynamic-styles) section on using and implementing runtime styling.
 
 ## Contents
 
@@ -33,6 +35,7 @@ There are some trade-offs with a non-css-in-js solution though. Since it still o
 - [Additional Styles](#additional-styles)
 - [Multiple Base Class Names](#multiple-base-class-names)
 - [TypeScript](#typescript)
+- [Dynamic Styles](#dynamic-styles)
 - [Browser Support](#browser-support)
 - [Badge](#badge)
 - [License](#license)
@@ -281,6 +284,51 @@ const Button = styled.button<ButtonProps>('button');
 
 // Life in beautiful type-safe harmony
 <Button size='small' />
+```
+
+## Dynamic Styles
+
+While the primary focus of `chic-modules` is to provide a better developer experience when working with css-modules and React, it also provides built-in functionality for handling instances where dynamic runtime styling is required.
+
+In the below example, we have a React component that accepts some children and wraps them in above and below spacing. Utility components like this can be useful when creating layouts but depending on your requirements can result in needing to include dozens of additional modifiers.
+
+By passing down your dynamic styles as a prop, `chic-modules` will automatically create a unique class and insert it into your document. Any updates to the component's prop value will then generate a new class attach itself to the component.
+
+`chic-modules` inserts all dynamic styles in a `style` element with the `data-chic` attribute. You can either control and add the element yourself, or `chic-modules` will create it for you automatically.
+
+```jsx
+import styles from './spacer.module.css';
+import { create } from 'chic-modules';
+
+const styled = create(styles);
+const Spacer = styled.div('spacer');
+
+function MySpacer({ bottom = 0, children, top = 0 }) {
+  return <Spacer style={{ padding-bottom: bottom, padding-top: top }}>{children}</Spacer>;
+}
+
+// outputs <div class="spacer cmq487y5">
+```
+
+### Server-Side Rendering
+
+For SSR pages, using the `extractDynamicStyles` function you can grab the dynamic styles and include them in the response HTML. Similar to the above, extracted dynamic styles from `chic-modules` must be placed within a `<style>` element with the `data-chic` attribute.
+
+```jsx
+import { extractDynamicStyles } from 'chic-modules';
+
+// In your HTTP response, return the base page HTML as well as your extracted dynamic styles.
+// Note: This setup does not include any installation steps for the base css-modules
+return `
+  <html>
+    <head>
+      <style data-chic>${extractDynamicStyles()}</style>
+    </head>
+    <body>
+      <div id="app">${html}</div>
+    </body>
+  </html>
+`;
 ```
 
 ## Browser Support
