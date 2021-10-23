@@ -76,7 +76,7 @@ export default function construct<Props = ChicProps>(options: ConstructOptions<P
           }
         }
 
-        if (constructedProps.style) {
+        if (constructedProps.style && isType(constructedProps.style, 'object')) {
           const classNamesHash = hash(classNamesArray.join(''));
           const stylesHash = hash(JSON.stringify(constructedProps.style));
           const combinedClassNameStyleHash = hash(`${classNamesHash}${stylesHash}`).toString(36);
