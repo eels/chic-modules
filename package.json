@@ -1,7 +1,7 @@
 {
   "name": "chic-modules",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A familiar styled-like API for working with css-modules in React",
   "author": "Liam Howell <liam@liam.codes>",
   "homepage": "https://github.com/eels/chic-modules#readme",
