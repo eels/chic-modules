@@ -23,7 +23,7 @@
     }
   },
   "scripts": {
-    "benchmark": "yarn upgrade chic-modules --silent && node ./benchmarks",
+    "benchmark": "yarn upgrade chic-modules --silent && yarn build && node ./benchmarks",
     "build": "microbundle --entry ./src/index.ts --raw --no-sourcemap",
     "clean": "rimraf ./dist",
     "format": "prettier './{benchmarks,src,test,types}/**/*.{js,ts,tsx}' --check",
