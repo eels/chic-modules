@@ -234,12 +234,10 @@ describe('construct', () => {
       const [counter, setCounter] = useState(0);
       const increase = () => setCounter(counter + 1);
 
-      return createElement('div', {
-        children: [
-          createElement(ButtonA, { children: counter, key: 0, onClick: increase }),
-          createElement(ButtonB, { children: 'static button', key: 1, style: { color: 'red' } }),
-        ],
-      });
+      return createElement('div', null, [
+        createElement(ButtonA, { key: 0, onClick: increase }, counter),
+        createElement(ButtonB, { key: 1, style: { color: 'red' } }, 'static button'),
+      ]);
     };
 
     render(createElement(Wrapper));
