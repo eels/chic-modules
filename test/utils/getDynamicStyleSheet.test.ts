@@ -1,4 +1,4 @@
-import getDynamicStyleSheet from '../../src/utils/getDynamicStyleSheet';
+import getDynamicStyleSheet from '@src/utils/getDynamicStyleSheet';
 
 describe('getDynamicStyleSheet', () => {
   afterEach(() => {

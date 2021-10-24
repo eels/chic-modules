@@ -1,4 +1,4 @@
-import type { ChicTarget } from '../../types';
+import type { ChicTarget } from '@types';
 
 export default function getComponentName(target: ChicTarget) {
   return (

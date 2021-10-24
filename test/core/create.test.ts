@@ -1,9 +1,9 @@
-import construct from '../../src/core/construct';
-import styles from '../__mocks__/styles.module.json';
-import { create } from '../../src/core/create';
-import type { CSSModule, ConstructOptions } from '../../types';
+import construct from '@src/core/construct';
+import styles from '@test/__mocks__/styles.module.json';
+import { create } from '@src/core/create';
+import type { CSSModule, ConstructOptions } from '@types';
 
-jest.mock('../../src/core/construct', () => jest.fn());
+jest.mock('@src/core/construct', () => jest.fn());
 
 describe('create', () => {
   it('should return a function with `attrs` defined as a property', () => {

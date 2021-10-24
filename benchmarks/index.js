@@ -1,12 +1,12 @@
-import Benchmark from 'benchmark';
 import createCanary from '../dist/chic-modules.cjs';
 import createLatest from '../node_modules/chic-modules/dist/chic-modules.cjs';
 import fs from 'fs';
-import react from 'react';
+import { Suite } from 'benchmark';
+import { createElement } from 'react';
 import { renderToString } from 'react-dom/server.js';
 
 function renderComponent(Component) {
-  const rendered = react.createElement(Component, {
+  const rendered = createElement(Component, {
     hasBorder: true,
     hasInvalidModifier: true,
     id: 'heading',
@@ -29,7 +29,7 @@ function onBenchmarkCycle(event) {
   console.log('▸', String(event.target));
 }
 
-const suite = new Benchmark.Suite('chic-modules');
+const suite = new Suite('chic-modules');
 const styles = JSON.parse(fs.readFileSync('./test/__mocks__/styles.module.json'));
 const styledCanary = createCanary(styles);
 const styledLatest = createLatest(styles);

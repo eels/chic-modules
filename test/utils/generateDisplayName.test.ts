@@ -1,4 +1,4 @@
-import generateDisplayName from '../../src/utils/generateDisplayName';
+import generateDisplayName from '@src/utils/generateDisplayName';
 import { createElement } from 'react';
 
 jest.mock('../../src/utils/getComponentName', () => jest.fn(() => 'Component'));

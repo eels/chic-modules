@@ -1,4 +1,4 @@
-import isType from './isType';
+import isType from '@src/utils/isType';
 
 export default function circularStringify(object: Object) {
   const references = new WeakSet();

@@ -1,5 +1,5 @@
-import getDynamicStyleSheet from './getDynamicStyleSheet';
-import { DYNAMIC_STYLES_CACHE } from '../core/extractDynamicStyles';
+import getDynamicStyleSheet from '@src/utils/getDynamicStyleSheet';
+import { DYNAMIC_STYLES_CACHE } from '@src/core/extractDynamicStyles';
 
 export default function insertDynamicCSSRule(selector: string, styles: string[]) {
   const constructedRule = `.${selector}{${styles.join('')}}`;

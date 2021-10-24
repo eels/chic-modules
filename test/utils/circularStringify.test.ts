@@ -1,5 +1,5 @@
-import circularStringify from '../../src/utils/circularStringify';
-import type { ExtendableObject } from '../../types';
+import circularStringify from '@src/utils/circularStringify';
+import type { ExtendableObject } from '@types';
 
 describe('utils/circularStringify', () => {
   it('should successfully stringify circular objects', () => {

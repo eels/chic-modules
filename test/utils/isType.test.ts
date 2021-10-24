@@ -1,4 +1,4 @@
-import isType from '../../src/utils/isType';
+import isType from '@src/utils/isType';
 
 describe('utils/isType', () => {
   it('should return the correct boolean with a single type argument', () => {

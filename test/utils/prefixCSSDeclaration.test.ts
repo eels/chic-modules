@@ -1,4 +1,4 @@
-import prefixCSSDeclaration from '../../src/utils/prefixCSSDeclaration';
+import prefixCSSDeclaration from '@src/utils/prefixCSSDeclaration';
 
 describe('prefixCSSDeclaration', () => {
   it('should return a basic constructed css rule', () => {

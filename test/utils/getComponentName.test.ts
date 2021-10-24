@@ -1,4 +1,4 @@
-import getComponentName from '../../src/utils/getComponentName';
+import getComponentName from '@src/utils/getComponentName';
 import { createElement } from 'react';
 
 describe('utils/getComponentName', () => {

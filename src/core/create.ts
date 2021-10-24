@@ -1,5 +1,5 @@
-import construct from './construct';
-import type { Attrs, CSSModule, ChicFactory, ChicFunction, ChicTagFunction } from '../../types';
+import construct from '@src/core/construct';
+import type { Attrs, CSSModule, ChicFactory, ChicFunction, ChicTagFunction } from '@types';
 
 export function create(styles: CSSModule = {}) {
   const Chic: ChicFunction = (target, classNames, additionalStyles?) => {

@@ -1,14 +1,14 @@
 import cc from 'classcat';
-import circularStringify from '../utils/circularStringify';
-import convertCamelToKebabCase from '../utils/convertCamelToKebabCase';
-import generateDisplayName from '../utils/generateDisplayName';
-import hash from '../utils/hash';
-import insertDynamicCSSRule from '../utils/insertDynamicCSSRule';
-import isType from '../utils/isType';
+import circularStringify from '@src/utils/circularStringify';
+import convertCamelToKebabCase from '@src/utils/convertCamelToKebabCase';
+import generateDisplayName from '@src/utils/generateDisplayName';
+import hash from '@src/utils/hash';
+import insertDynamicCSSRule from '@src/utils/insertDynamicCSSRule';
+import isType from '@src/utils/isType';
 import isValidProp from '@emotion/is-prop-valid';
-import prefixCSSDeclaration from '../utils/prefixCSSDeclaration';
+import prefixCSSDeclaration from '@src/utils/prefixCSSDeclaration';
 import { createElement, forwardRef } from 'react';
-import type { ChicProps, ConstructOptions, ExtendableObject } from '../../types';
+import type { ChicProps, ConstructOptions, ExtendableObject } from '@types';
 import type { Ref } from 'react';
 
 export default function construct<Props = ChicProps>(options: ConstructOptions<Props>) {

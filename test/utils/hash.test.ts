@@ -1,4 +1,4 @@
-import hash from '../../src/utils/hash';
+import hash from '@src/utils/hash';
 
 describe('utils/hash', () => {
   it('should return zero for inputs with a length of zero', () => {
