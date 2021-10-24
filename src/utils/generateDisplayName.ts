@@ -1,6 +1,6 @@
 import getComponentName from './getComponentName';
 import isType from './isType';
-import { ChicTarget } from '../../types';
+import type { ChicTarget } from '../../types';
 
 export default function generateDisplayName(target: ChicTarget) {
   return !isType(target, 'string')

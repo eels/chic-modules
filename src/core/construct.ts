@@ -7,8 +7,9 @@ import insertDynamicCSSRule from '../utils/insertDynamicCSSRule';
 import isType from '../utils/isType';
 import isValidProp from '@emotion/is-prop-valid';
 import prefixCSSDeclaration from '../utils/prefixCSSDeclaration';
-import { ChicProps, ConstructOptions, ExtendableObject } from '../../types';
-import { Ref, createElement, forwardRef } from 'react';
+import { createElement, forwardRef } from 'react';
+import type { ChicProps, ConstructOptions, ExtendableObject } from '../../types';
+import type { Ref } from 'react';
 
 export default function construct<Props = ChicProps>(options: ConstructOptions<Props>) {
   const { attrs, classNames, styles, target } = options;
