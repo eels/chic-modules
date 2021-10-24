@@ -6,15 +6,12 @@ import { create as createLatest } from '../node_modules/chic-modules/dist/chic-m
 import { renderToString } from 'react-dom/server.js';
 
 function renderComponent(Component) {
-  const rendered = React.createElement(Component, {
-    hasBorder: true,
-    hasInvalidModifier: true,
-    id: 'heading',
+  const component = React.createElement(Component, {
     isPrimary: true,
-    withWeight: 'bold',
+    styles: { padding: `${Math.random()}px` },
   });
 
-  renderToString(rendered);
+  renderToString(component);
 }
 
 function onBenchmarkStart(event) {
@@ -33,10 +30,9 @@ const suite = new Benchmark.Suite('chic-modules');
 const styles = JSON.parse(fs.readFileSync('./test/__mocks__/styles.module.json'));
 const styledCanary = createCanary(styles);
 const styledLatest = createLatest(styles);
-const classNamesArray = ['heading', 'hero'];
 
-suite.add('chic-modules@canary', () => renderComponent(styledCanary('h1', classNamesArray)));
-suite.add('chic-modules@latest', () => renderComponent(styledLatest('h1', classNamesArray)));
+suite.add('chic-modules@canary', () => renderComponent(styledCanary('h1', 'heading')));
+suite.add('chic-modules@latest', () => renderComponent(styledLatest('h1', 'heading')));
 
 suite.on('start', onBenchmarkStart);
 suite.on('error', onBenchmarkError);
