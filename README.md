@@ -36,6 +36,7 @@ There are some trade-offs with a non-css-in-js solution though. Since it still o
 - [Multiple Base Class Names](#multiple-base-class-names)
 - [TypeScript](#typescript)
 - [Dynamic Styles](#dynamic-styles)
+  - [Server-Side Rendering](#server-side-rendering)
 - [Browser Support](#browser-support)
 - [Badge](#badge)
 - [Built With `chic-modules`](#built-with-chic-modules)
