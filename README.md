@@ -40,6 +40,7 @@ There are some trade-offs with a non-css-in-js solution though. Since it still o
 - [Browser Support](#browser-support)
 - [Badge](#badge)
 - [Built With `chic-modules`](#built-with-chic-modules)
+- [Contributing](#contributing)
 - [License](#license)
 - [Acknowledgments](#acknowledgments)
 
@@ -361,6 +362,12 @@ Sing loud and proud! Let the world know that you're using `chic-modules`
 - [start.liam.codes](https://github.com/eels/start.liam.codes) A custom new tab screen that attempts to reduce my procrastination
 
 Know of any cool projects built using `chic-modules`? Raise an [issue](https://github.com/eels/chic-modules/issues/new), let me know and I'll add them to the list!
+
+## Contributing
+
+Thanks for taking the time to contribute! Before you get started, please take a moment to read through our [contributing guide](https://github.com/eels/chic-modules/blob/main/.github/CONTRIBUTING.md). The two focus areas for `chic-modules` right now is increasing performance and fixing potential bugs.
+
+However, all issues and PRs are welcome!
 
 ## License
 
