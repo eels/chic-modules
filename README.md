@@ -304,7 +304,7 @@ const styled = create(styles);
 const Spacer = styled.div('spacer');
 
 function MySpacer({ bottom = 0, children, top = 0 }) {
-  return <Spacer style={{ padding-bottom: bottom, padding-top: top }}>{children}</Spacer>;
+  return <Spacer style={{ paddingBottom: bottom, paddingTop: top }}>{children}</Spacer>;
 }
 
 // outputs <div class="spacer cmq487y5">
