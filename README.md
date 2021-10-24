@@ -294,7 +294,7 @@ In the below example, we have a React component that accepts some children and w
 
 By passing down your dynamic styles as a prop, `chic-modules` will automatically create a unique class and insert it into your document. Any updates to the component's prop value will then generate a new class attach itself to the component.
 
-`chic-modules` inserts all dynamic styles in a `style` element with the `data-chic` attribute. You can either control and add the element yourself, or `chic-modules` will create it for you automatically.
+`chic-modules` inserts all dynamic styles in a `style` element with the `data-chic` attribute within the document head. You can either control the placement and add the element yourself, or `chic-modules` will automatically create it for you.
 
 ```jsx
 import styles from './spacer.module.css';
@@ -312,13 +312,13 @@ function MySpacer({ bottom = 0, children, top = 0 }) {
 
 ### Server-Side Rendering
 
-For SSR pages, using the `extractDynamicStyles` function you can grab the dynamic styles and include them in the response HTML. Similar to the above, extracted dynamic styles from `chic-modules` must be placed within a `<style>` element with the `data-chic` attribute.
+For SSR pages, using the `extractDynamicStyles` function you can grab any component dynamic styles and include them in the response HTML. Similar to the above, extracted dynamic styles from `chic-modules` must be placed within a `<style>` element with the `data-chic` attribute.
 
 ```jsx
 import { extractDynamicStyles } from 'chic-modules';
 
 // In your HTTP response, return the base page HTML as well as your extracted dynamic styles.
-// Note: This setup does not include any installation steps for the base css-modules
+// Note: This setup needs to be done in addition to the regular implementation of your css-module styles
 return `
   <html>
     <head>
