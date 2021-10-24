@@ -331,6 +331,8 @@ return `
 `;
 ```
 
+[Open example using Next.js in CodeSandbox](https://codesandbox.io/s/lucid-bash-d5bg9?file=/pages/_document.jsx)
+
 ## Browser Support
 
 `chic-modules` should work in all major modern browsers out-of-the-box (Chrome, Edge, Firefox, Safari).
