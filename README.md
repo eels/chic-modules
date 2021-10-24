@@ -38,6 +38,7 @@ There are some trade-offs with a non-css-in-js solution though. Since it still o
 - [Dynamic Styles](#dynamic-styles)
 - [Browser Support](#browser-support)
 - [Badge](#badge)
+- [Built With `chic-modules`](#built-with-chic-modules)
 - [License](#license)
 - [Acknowledgments](#acknowledgments)
 
@@ -352,6 +353,13 @@ Sing loud and proud! Let the world know that you're using `chic-modules`
 ```
 [![styled with: chic-modules](https://img.shields.io/badge/styled%20with-%E2%9C%A8%20chic--modules-blue?style=flat-square)](https://github.com/eels/chic-modules)
 ```
+
+## Built With `chic-modules`
+
+- [liam.codes](https://github.com/eels/liam.codes) My personal website, highlighing recent projects and displaying contact information
+- [start.liam.codes](https://github.com/eels/start.liam.codes) A custom new tab screen that attempts to reduce my procrastination
+
+Know of any cool projects built using `chic-modules`? Raise an [issue](https://github.com/eels/chic-modules/issues/new), let me know and I'll add them to the list!
 
 ## License
 
