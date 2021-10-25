@@ -1,4 +1,5 @@
 import getDynamicStyleSheet from '@src/utils/getDynamicStyleSheet';
+import search from '@src/utils/search';
 import { DYNAMIC_STYLES_STORE } from '@src/store/styles';
 
 export default function insertDynamicCSSRule(selector: string, styles: string[]) {
@@ -6,16 +7,11 @@ export default function insertDynamicCSSRule(selector: string, styles: string[])
 
   if (typeof window === 'object') {
     const sheet = getDynamicStyleSheet().sheet as CSSStyleSheet;
-    let isRuleAlreadyDefined = false;
+    const rules = <CSSStyleRule[]>[...sheet.cssRules];
 
-    for (const rule of sheet.cssRules) {
-      const sheetStyleRule = rule as CSSStyleRule;
-
-      if (sheetStyleRule.selectorText === `.${selector}`) {
-        isRuleAlreadyDefined = true;
-        break;
-      }
-    }
+    const isRuleAlreadyDefined = search<CSSStyleRule>(rules, (item) => {
+      return item.selectorText === `.${selector}`;
+    });
 
     !isRuleAlreadyDefined && sheet?.insertRule(constructedRule);
   }
