@@ -39,3 +39,8 @@ jobs:
       - name: Test Code
         run: |
           yarn test
+
+      - name: Publish To Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
