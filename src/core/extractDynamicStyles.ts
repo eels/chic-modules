@@ -1,5 +1,5 @@
-export const DYNAMIC_STYLES_CACHE = <string[]>[];
+import { DYNAMIC_STYLES_STORE } from '@src/store/styles';
 
 export function extractDynamicStyles() {
-  return DYNAMIC_STYLES_CACHE.join('');
+  return DYNAMIC_STYLES_STORE.join('');
 }
