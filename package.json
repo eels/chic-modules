@@ -25,6 +25,7 @@
   "scripts": {
     "benchmark": "yarn upgrade chic-modules --silent && yarn build && node ./benchmarks",
     "build": "microbundle --entry ./src/index.ts --raw --no-sourcemap",
+    "changelog": "auto-changelog -b 10 -l 10 -t keepachangelog --hide-credit --sort-commits subject",
     "clean": "rimraf ./dist",
     "format": "prettier './{benchmarks,src,test,types}/**/*.{js,ts,tsx}' --check",
     "format:fix": "yarn format --write",
@@ -78,6 +79,7 @@
     "@types/react-dom": "^17.0.10",
     "@typescript-eslint/eslint-plugin": "^5.1.0",
     "@typescript-eslint/parser": "^5.1.0",
+    "auto-changelog": "^2.3.0",
     "benchmark": "^2.1.4",
     "chic-modules": "latest",
     "eslint": "^8.1.0",
