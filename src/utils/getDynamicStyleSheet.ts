@@ -12,5 +12,5 @@ export default function getDynamicStyleSheet(target?: Document): HTMLStyleElemen
   createdSheet.setAttribute('data-chic', '');
   head.appendChild(createdSheet);
 
-  return getDynamicStyleSheet();
+  return createdSheet;
 }
