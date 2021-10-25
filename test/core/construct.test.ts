@@ -44,6 +44,24 @@ describe('construct', () => {
     expect(screen.getByRole('heading')).toHaveClass('heading hero');
   });
 
+  it('should throw and error when an invalid/missing class is provided', () => {
+    const parameters: ConstructOptions = {
+      attrs: {},
+      classNames: 'invalid',
+      styles: styles,
+      target: 'h1',
+    };
+
+    const consoleSpy = console as any;
+
+    jest.spyOn(consoleSpy, 'error');
+    consoleSpy.error.mockImplementation(() => {});
+
+    expect(() => render(createElement(construct(parameters)))).toThrow();
+
+    consoleSpy.error.mockRestore();
+  });
+
   it('should render an extended component', () => {
     const parameters: ConstructOptions = {
       attrs: {},
@@ -70,18 +88,6 @@ describe('construct', () => {
 
     render(createElement(construct(parameters), { noneValidProp: true }));
     expect(screen.getByRole('heading')).not.toHaveAttribute('noneValidProp');
-  });
-
-  it('should not pass down any class that does not exist in the styles object', () => {
-    const parameters: ConstructOptions = {
-      attrs: {},
-      classNames: 'missing-heading',
-      styles: styles,
-      target: 'h1',
-    };
-
-    render(createElement(construct(parameters)));
-    expect(screen.getByRole('heading')).not.toHaveClass('missing-heading');
   });
 
   it('should convert truthy props prefixed with `is` or `has` to class names', () => {

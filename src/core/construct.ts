@@ -19,12 +19,18 @@ export default function construct<Props = ChicProps>(options: ConstructOptions<P
     const name = generateDisplayName(<any>target);
 
     function styled(props: Props, ref: Ref<Element>) {
+      const isSingularClassName = isType(classNames, 'string');
+      const classNamesArray = <string[]>(!isSingularClassName ? classNames : [classNames]);
+
+      for (const className of classNamesArray) {
+        if (!styles[className]) {
+          throw new Error(`Target class "${className}" does not exist in provided module`);
+        }
+      }
+
       const constructedProps = <ChicProps>Object.assign({}, attrs, props);
       const constructedPropsHash = hash(circularStringify(constructedProps));
       const constructedPropsKeys = Object.keys(constructedProps);
-
-      const isSingularClassName = isType(classNames, 'string');
-      const classNamesArray = <string[]>(!isSingularClassName ? classNames : [classNames]);
       const prefixes = ['has', 'is', 'with'];
       const prefixesRegex = new RegExp(`^(${prefixes.join('|')})`);
 
@@ -32,10 +38,6 @@ export default function construct<Props = ChicProps>(options: ConstructOptions<P
         for (const className of classNamesArray) {
           const stylesLookup = styles[className];
           const modifiers: ExtendableObject<Props[Extract<keyof Props, string>]> = {};
-
-          if (!stylesLookup) {
-            continue;
-          }
 
           for (const prop of constructedPropsKeys) {
             const propValue = constructedProps[prop];
