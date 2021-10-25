@@ -1,5 +1,5 @@
 import getDynamicStyleSheet from '@src/utils/getDynamicStyleSheet';
-import { DYNAMIC_STYLES_CACHE } from '@src/core/extractDynamicStyles';
+import { DYNAMIC_STYLES_STORE } from '@src/store/styles';
 
 export default function insertDynamicCSSRule(selector: string, styles: string[]) {
   const constructedRule = `.${selector}{${styles.join('')}}`;
@@ -20,7 +20,7 @@ export default function insertDynamicCSSRule(selector: string, styles: string[])
     !isRuleAlreadyDefined && sheet?.insertRule(constructedRule);
   }
 
-  if (!DYNAMIC_STYLES_CACHE.includes(constructedRule)) {
-    DYNAMIC_STYLES_CACHE.push(constructedRule);
+  if (!DYNAMIC_STYLES_STORE.includes(constructedRule)) {
+    DYNAMIC_STYLES_STORE.push(constructedRule);
   }
 }

@@ -1,5 +1,5 @@
 import insertDynamicCSSRule from '@src/utils/insertDynamicCSSRule';
-import { DYNAMIC_STYLES_CACHE } from '@src/core/extractDynamicStyles';
+import { DYNAMIC_STYLES_STORE } from '@src/store/styles';
 
 describe('utils/insertDynamicCSSRule', () => {
   beforeEach(() => {
@@ -35,14 +35,14 @@ describe('utils/insertDynamicCSSRule', () => {
     expect(rules).toHaveLength(1);
   });
 
-  it('should ensure css rules are only added to the cache once', () => {
+  it('should ensure css rules are only added to the store once', () => {
     insertDynamicCSSRule('example', ['background-color:black;']);
     insertDynamicCSSRule('example', ['background-color:black;']);
 
     const output = '.example{background-color:black;}';
-    const search = DYNAMIC_STYLES_CACHE.filter((entry) => entry === output);
+    const search = DYNAMIC_STYLES_STORE.filter((entry) => entry === output);
 
-    expect(DYNAMIC_STYLES_CACHE).toContain(output);
+    expect(DYNAMIC_STYLES_STORE).toContain(output);
     expect(search).toHaveLength(1);
   });
 
