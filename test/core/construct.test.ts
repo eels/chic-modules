@@ -4,7 +4,7 @@ import { createElement, createRef, useState } from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import type { ConstructOptions } from '@types';
 
-describe('construct', () => {
+describe('core/construct', () => {
   it('should render a basic component with no additional attrs', () => {
     const parameters: ConstructOptions = {
       attrs: {},

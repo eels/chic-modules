@@ -1,7 +1,7 @@
 import insertDynamicCSSRule from '@src/utils/insertDynamicCSSRule';
 import { DYNAMIC_STYLES_CACHE } from '@src/core/extractDynamicStyles';
 
-describe('insertDynamicCSSRule', () => {
+describe('utils/insertDynamicCSSRule', () => {
   beforeEach(() => {
     const customSheetElement = document.createElement('style');
 

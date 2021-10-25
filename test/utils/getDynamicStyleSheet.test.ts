@@ -1,6 +1,6 @@
 import getDynamicStyleSheet from '@src/utils/getDynamicStyleSheet';
 
-describe('getDynamicStyleSheet', () => {
+describe('utils/getDynamicStyleSheet', () => {
   afterEach(() => {
     const element = document.querySelector('style[data-chic]');
 

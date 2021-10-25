@@ -1,6 +1,6 @@
 import prefixCSSDeclaration from '@src/utils/prefixCSSDeclaration';
 
-describe('prefixCSSDeclaration', () => {
+describe('utils/prefixCSSDeclaration', () => {
   it('should return a basic constructed css rule', () => {
     const prefixedRule = prefixCSSDeclaration('background-color', 'black');
 

@@ -1,6 +1,6 @@
 import { DYNAMIC_STYLES_CACHE, extractDynamicStyles } from '@src/core/extractDynamicStyles';
 
-describe('extractDynamicStyles', () => {
+describe('core/extractDynamicStyles', () => {
   it('should return the dynamic styles cache', () => {
     expect(extractDynamicStyles()).toBe('');
 
