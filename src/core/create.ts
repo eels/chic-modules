@@ -1,4 +1,4 @@
-import construct from '@src/core/construct';
+import construct from '@src/lib/construct';
 import type { Attrs, CSSModule, ChicFactory, ChicFunction, ChicTagFunction } from '@types';
 
 export function create(styles: CSSModule = {}) {

@@ -1,10 +1,10 @@
-import construct from '@src/core/construct';
+import construct from '@src/lib/construct';
 import styles from '@test/__mocks__/styles.module.json';
 import { createElement, createRef, useState } from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import type { ConstructOptions } from '@types';
 
-describe('core/construct', () => {
+describe('lib/construct', () => {
   it('should render a basic component with no additional attrs', () => {
     const parameters: ConstructOptions = {
       attrs: {},
