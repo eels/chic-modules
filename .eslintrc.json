@@ -28,8 +28,7 @@
     "prettier",
     "sort-destructure-keys",
     "sort-imports-es6-autofix",
-    "sort-keys-fix",
-    "testing-library"
+    "sort-keys-fix"
   ],
 
   "settings": {
@@ -83,12 +82,5 @@
         "requireStringLiterals": false
       }
     ]
-  },
-
-  "overrides": [
-    {
-      "extends": ["plugin:testing-library/react"],
-      "files": ["**/?(*.)+(spec|test).[jt]s?(x)"]
-    }
-  ]
+  }
 }
