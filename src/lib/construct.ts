@@ -16,6 +16,7 @@ export default function construct<Props = ChicProps>(options: ConstructOptions<P
   const prefixes = ['has', 'is', 'with'];
   const prefixesRegex = new RegExp(`^(${prefixes.join('|')})`);
   const isSingularClassName = isType(classNames, 'string');
+  const isTargetObject = isType(target, 'object');
   const classNamesArray = <string[]>(!isSingularClassName ? classNames : [classNames]);
 
   function wrapper() {
@@ -28,7 +29,6 @@ export default function construct<Props = ChicProps>(options: ConstructOptions<P
       const constructedPropsKeys = Object.keys(constructedProps);
       const as = constructedProps.as || target;
       const hasValidAs = isType(as, ['function', 'object', 'string']);
-      const isTargetObject = isType(target, 'object');
       const element = hasValidAs && !isTargetObject ? as : target;
 
       if (!cache[constructedPropsHash]) {
