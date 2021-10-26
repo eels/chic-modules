@@ -1,4 +1,5 @@
 import cc from 'classcat';
+import circularStringify from '@src/utils/circularStringify';
 import convertCamelToKebabCase from '@src/utils/convertCamelToKebabCase';
 import generateDisplayName from '@src/utils/generateDisplayName';
 import hash from '@src/utils/hash';
@@ -21,71 +22,77 @@ export default function construct<Props = ChicProps>(options: ConstructOptions<P
   const classNamesHash = hash(classNamesArray.join(''));
 
   function wrapper() {
+    const cache: ExtendableObject<Class[]> = {};
     const name = generateDisplayName(<any>target);
 
     function styled(props: Props, ref: Ref<Element>) {
       const constructedProps = <ChicProps>Object.assign({}, attrs, props);
+      const constructedPropsHash = hash(circularStringify(constructedProps)).toString(36);
       const constructedPropsEntries = Object.entries(constructedProps);
       const as = constructedProps.as || target;
       const hasValidAs = isType(as, ['function', 'object', 'string']);
       const element = hasValidAs && !isTargetObject ? as : target;
-      const componentClassNames = <Class[]>[];
-      const dynamicStyleClassNames = <string[]>[];
+      const dynamicClassNames = <string[]>[];
+      const componentClassNames = constructedProps.className;
       const modifiers: ExtendableObject<Props[Extract<keyof Props, string>]> = {};
 
       if (constructedPropsEntries.length === 0) {
         constructedPropsEntries.push([`__chic-${Date.now().toString(36)}`, false]);
       }
 
-      for (const [prop, value] of constructedPropsEntries) {
-        for (const className of classNamesArray) {
-          const stylesLookup = styles[className];
+      if (!cache[constructedPropsHash]) {
+        cache[constructedPropsHash] = <Class[]>[];
 
-          if (!stylesLookup) {
-            throw new Error(`Target class "${className}" does not exist in provided module`);
-          }
+        for (const [prop, value] of constructedPropsEntries) {
+          for (const className of classNamesArray) {
+            const stylesLookup = styles[className];
 
-          componentClassNames.push(stylesLookup);
+            if (!stylesLookup) {
+              throw new Error(`Target class "${className}" does not exist in provided module`);
+            }
 
-          if (prefixes.some((prefix) => !!prop.match(`^${prefix}`))) {
-            const prefix = prop.match(prefixesRegex)?.[0];
-            const modifier = convertCamelToKebabCase(prop.replace(prefixesRegex, ''));
-            const baseClassName = `${className}--${modifier.toLowerCase()}`;
-            const modifierValueExtention = prefix === 'with' ? `-${value}` : '';
-            const constructedClassName = `${baseClassName}${modifierValueExtention}`;
-            const constructedStylesLookup = styles[constructedClassName];
+            cache[constructedPropsHash].push(stylesLookup);
 
-            if (constructedStylesLookup) {
-              modifiers[constructedStylesLookup] = value;
+            if (prefixes.some((prefix) => !!prop.match(`^${prefix}`))) {
+              const prefix = prop.match(prefixesRegex)?.[0];
+              const modifier = convertCamelToKebabCase(prop.replace(prefixesRegex, ''));
+              const baseClassName = `${className}--${modifier.toLowerCase()}`;
+              const modifierValueExtention = prefix === 'with' ? `-${value}` : '';
+              const constructedClassName = `${baseClassName}${modifierValueExtention}`;
+              const constructedStylesLookup = styles[constructedClassName];
+
+              if (constructedStylesLookup) {
+                modifiers[constructedStylesLookup] = value;
+              }
             }
           }
-        }
 
-        if (!isTargetObject && !isValidProp(prop)) {
-          delete constructedProps[prop];
-        }
-
-        if (!isTargetObject && prop === 'style' && isType(value, 'object')) {
-          const styleHash = hash(JSON.stringify(value));
-          const constructedStyleHash = hash(`${classNamesHash}${styleHash}`).toString(36);
-          const styleEntries = Object.entries(value);
-          const styleClassName = `cm${constructedStyleHash}`;
-          const dynamicStyles = <string[]>[];
-
-          delete constructedProps.style;
-          dynamicStyleClassNames.push(styleClassName);
-
-          for (const [property, value] of styleEntries) {
-            dynamicStyles.push(prefixCSSDeclaration(convertCamelToKebabCase(property), value));
+          if (!isTargetObject && !isValidProp(prop)) {
+            delete constructedProps[prop];
           }
 
-          insertDynamicCSSRule(styleClassName, dynamicStyles);
+          if (!isTargetObject && prop === 'style' && isType(value, 'object')) {
+            const styleHash = hash(JSON.stringify(value)).toString(36);
+            const constructedStyleHash = hash(`${classNamesHash}${styleHash}`).toString(36);
+            const styleEntries = Object.entries(value);
+            const styleClassName = `cm${constructedStyleHash}`;
+            const dynamicStyles = <string[]>[];
+
+            delete constructedProps.style;
+            dynamicClassNames.push(styleClassName);
+
+            for (const [property, value] of styleEntries) {
+              dynamicStyles.push(prefixCSSDeclaration(convertCamelToKebabCase(property), value));
+            }
+
+            insertDynamicCSSRule(styleClassName, dynamicStyles);
+          }
         }
+
+        cache[constructedPropsHash].push(modifiers, dynamicClassNames, componentClassNames);
       }
 
-      componentClassNames.push(modifiers, dynamicStyleClassNames, constructedProps.className);
-
-      constructedProps.className = cc(componentClassNames);
+      constructedProps.className = cc(cache[constructedPropsHash]);
 
       const propsRefObject = ref ? { ref } : {};
       const propsToForward = Object.assign({}, constructedProps, propsRefObject);

@@ -207,7 +207,7 @@ describe('lib/construct', () => {
     };
 
     render(createElement(construct(parameters), { style: { color: 'red' } }));
-    expect(screen.getByRole('heading')).toHaveClass('cmq487y5');
+    expect(screen.getByRole('heading')).toHaveClass('cmghm6z');
     expect(screen.getByRole('heading')).not.toHaveAttribute('style');
   });
 
