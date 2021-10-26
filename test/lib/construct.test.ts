@@ -62,6 +62,48 @@ describe('lib/construct', () => {
     consoleSpy.error.mockRestore();
   });
 
+  it('should render a basic component with additional static class names attrs', () => {
+    const parameters: ConstructOptions = {
+      attrs: { className: 'custom-class' },
+      classNames: 'heading',
+      styles: styles,
+      target: 'h1',
+    };
+
+    render(createElement(construct(parameters)));
+    expect(screen.getByRole('heading')).toBeInTheDocument();
+    expect(screen.getByRole('heading')).toHaveClass('heading custom-class');
+  });
+
+  it('should render a basic component with additional static class names props', () => {
+    const parameters: ConstructOptions = {
+      attrs: {},
+      classNames: 'heading',
+      styles: styles,
+      target: 'h1',
+    };
+
+    render(createElement(construct(parameters), { className: 'custom-class' }));
+    expect(screen.getByRole('heading')).toBeInTheDocument();
+    expect(screen.getByRole('heading')).toHaveClass('heading custom-class');
+  });
+
+  it('should render an extended component with additional static class names attrs', () => {
+    const parameters: ConstructOptions = {
+      attrs: { className: 'custom-class' },
+      classNames: 'heading',
+      styles: styles,
+      target: 'h1',
+    };
+
+    parameters.target = construct(parameters);
+    parameters.classNames = 'extended';
+
+    render(createElement(construct(parameters)));
+    expect(screen.getByRole('heading')).toBeInTheDocument();
+    expect(screen.getByRole('heading')).toHaveClass('heading extended custom-class');
+  });
+
   it('should render an extended component', () => {
     const parameters: ConstructOptions = {
       attrs: {},
