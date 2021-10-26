@@ -1,4 +1,4 @@
-import cc, { Class } from 'classcat';
+import cc from 'classcat';
 import convertCamelToKebabCase from '@src/utils/convertCamelToKebabCase';
 import generateDisplayName from '@src/utils/generateDisplayName';
 import hash from '@src/utils/hash';
@@ -8,6 +8,7 @@ import isValidProp from '@emotion/is-prop-valid';
 import prefixCSSDeclaration from '@src/utils/prefixCSSDeclaration';
 import { createElement, forwardRef } from 'react';
 import type { ChicProps, ConstructOptions, ExtendableObject } from '@types';
+import type { Class } from 'classcat';
 import type { Ref } from 'react';
 
 export default function construct<Props = ChicProps>(options: ConstructOptions<Props>) {
