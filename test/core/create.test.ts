@@ -1,6 +1,6 @@
 import construct from '@src/lib/construct';
+import create from '@src/core/create';
 import styles from '@test/__mocks__/styles.module.json';
-import { create } from '@src/core/create';
 import type { CSSModule, ConstructOptions } from '@types';
 
 jest.mock('@src/lib/construct', () => jest.fn());
