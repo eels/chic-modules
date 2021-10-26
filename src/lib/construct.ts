@@ -13,29 +13,30 @@ import type { Ref } from 'react';
 
 export default function construct<Props = ChicProps>(options: ConstructOptions<Props>) {
   const { attrs, classNames, styles, target } = options;
+  const prefixes = ['has', 'is', 'with'];
+  const prefixesRegex = new RegExp(`^(${prefixes.join('|')})`);
+  const isSingularClassName = isType(classNames, 'string');
+  const classNamesArray = <string[]>(!isSingularClassName ? classNames : [classNames]);
 
   function wrapper() {
     const cache: ExtendableObject = {};
     const name = generateDisplayName(<any>target);
 
     function styled(props: Props, ref: Ref<Element>) {
-      const isSingularClassName = isType(classNames, 'string');
-      const classNamesArray = <string[]>(!isSingularClassName ? classNames : [classNames]);
-
-      for (const className of classNamesArray) {
-        if (!styles[className]) {
-          throw new Error(`Target class "${className}" does not exist in provided module`);
-        }
-      }
-
       const constructedProps = <ChicProps>Object.assign({}, attrs, props);
       const constructedPropsHash = hash(circularStringify(constructedProps));
       const constructedPropsKeys = Object.keys(constructedProps);
-      const prefixes = ['has', 'is', 'with'];
-      const prefixesRegex = new RegExp(`^(${prefixes.join('|')})`);
+      const as = constructedProps.as || target;
+      const hasValidAs = isType(as, ['function', 'object', 'string']);
+      const isTargetObject = isType(target, 'object');
+      const element = hasValidAs && !isTargetObject ? as : target;
 
       if (!cache[constructedPropsHash]) {
         for (const className of classNamesArray) {
+          if (!styles[className]) {
+            throw new Error(`Target class "${className}" does not exist in provided module`);
+          }
+
           const stylesLookup = styles[className];
           const modifiers: ExtendableObject<Props[Extract<keyof Props, string>]> = {};
 
@@ -66,11 +67,6 @@ export default function construct<Props = ChicProps>(options: ConstructOptions<P
       }
 
       constructedProps.className = cache[constructedPropsHash];
-
-      const as = constructedProps.as || target;
-      const hasValidAs = isType(as, ['function', 'object', 'string']);
-      const isTargetObject = isType(target, 'object');
-      const element = hasValidAs && !isTargetObject ? as : target;
 
       if (!isTargetObject) {
         for (const prop of constructedPropsKeys) {
@@ -108,9 +104,11 @@ export default function construct<Props = ChicProps>(options: ConstructOptions<P
         }
       }
 
-      const propsToForward = Object.assign({}, constructedProps, ref ? { ref } : {});
+      const propsRefObject = ref ? { ref } : {};
+      const propsToForward = Object.assign({}, constructedProps, propsRefObject);
+      const children = constructedProps.children ?? null;
 
-      return createElement(element, propsToForward, constructedProps.children ?? null);
+      return createElement(element, propsToForward, children);
     }
 
     Object.defineProperty(styled, 'name', { value: name });
