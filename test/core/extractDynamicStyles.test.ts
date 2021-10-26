@@ -1,5 +1,5 @@
+import extractDynamicStyles from '@src/core/extractDynamicStyles';
 import { DYNAMIC_STYLES_STORE } from '@src/store/styles';
-import { extractDynamicStyles } from '@src/core/extractDynamicStyles';
 
 describe('core/extractDynamicStyles', () => {
   it('should return the dynamic styles store', () => {
