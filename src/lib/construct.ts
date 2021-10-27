@@ -5,7 +5,7 @@ import generateDisplayName from '@src/utils/generateDisplayName';
 import hash from '@src/utils/hash';
 import insertDynamicCSSRule from '@src/utils/insertDynamicCSSRule';
 import isType from '@src/utils/isType';
-import isValidProp from '@emotion/is-prop-valid';
+import isValidProp from '@src/utils/isValidProp';
 import prefixCSSDeclaration from '@src/utils/prefixCSSDeclaration';
 import { createElement, forwardRef } from 'react';
 import type { ChicProps, ConstructOptions, ExtendableObject } from '@types';
