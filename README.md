@@ -10,10 +10,10 @@
   <div>A familiar styled-like API for working with css-modules in React</div>
   <br />
   <a href="https://www.npmjs.com/package/chic-modules"><img src="https://img.shields.io/npm/v/chic-modules?style=flat-square" /></a>
-  <a href="https://coveralls.io/github/eels/chic-modules"><img src="https://img.shields.io/coveralls/github/eels/chic-modules?style=flat-square" /></a>
-  <a href="https://github.com/eels/chic-modules/actions/workflows/codeql-analysis.yml"><img src="https://img.shields.io/github/workflow/status/eels/chic-modules/CodeQL%20Analysis?label=CodeQL&style=flat-square&logo=github" /></a>
-  <a href="https://www.npmjs.com/package/chic-modules"><img src="https://img.shields.io/npm/dm/chic-modules?style=flat-square" /></a>
-  <a href="https://unpkg.com/chic-modules@latest/dist/chic-modules.mjs"><img src="https://img.badgesize.io/https://unpkg.com/chic-modules@latest/dist/chic-modules.mjs?compression=gzip&style=flat-square" /></a>
+  <a href="https://coveralls.io/github/eels/chic-modules"><img src="https://img.shields.io/coveralls/github/eels/chic-modules?label=Coverage&style=flat-square" /></a>
+  <a href="https://github.com/eels/chic-modules/actions/workflows/codeql-analysis.yml"><img src="https://img.shields.io/github/workflow/status/eels/chic-modules/CodeQL%20Analysis?label=CodeQL&style=flat-square" /></a>
+  <a href="https://www.npmjs.com/package/chic-modules"><img src="https://img.shields.io/npm/dm/chic-modules?label=Downloads&style=flat-square" /></a>
+  <a href="https://unpkg.com/chic-modules@latest/dist/chic-modules.mjs"><img src="https://img.badgesize.io/https:/unpkg.com/chic-modules@latest/dist/chic-modules.mjs?label=Gzip%20Size&style=flat-square&compression=gzip" /></a>
   <br /><br />
   <pre>yarn add <a href="https://www.npmjs.com/package/chic-modules">chic-modules</a></pre>
   <h1></h1>
