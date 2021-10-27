@@ -55,11 +55,12 @@
     "styled"
   ],
   "dependencies": {
-    "@emotion/is-prop-valid": "^1.1.0",
     "classcat": "^5.0.3",
+    "html-attributes": "^1.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "style-vendorizer": "^2.1.1"
+    "style-vendorizer": "^2.1.1",
+    "svg-attributes": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.15.8",
