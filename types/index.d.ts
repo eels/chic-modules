@@ -1,18 +1,6 @@
 import tags from './tags';
 import type { ComponentType, ForwardRefExoticComponent, PropsWithoutRef } from 'react';
 
-declare module 'html-attributes' {
-  const attributes: { [key: string]: string };
-
-  export default attributes;
-}
-
-declare module 'svg-attributes' {
-  const attributes: { [key: string]: string };
-
-  export default attributes;
-}
-
 export type ExtendableObject<T = any> = { [key: string]: T };
 
 export type AttrProps = ExtendableObject;
