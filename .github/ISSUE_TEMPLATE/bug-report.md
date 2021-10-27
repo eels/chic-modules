@@ -1,3 +1,9 @@
+---
+name: Bug Report
+about: Create a bug report for chic-modules
+labels: bug
+---
+
 ## Expected Behavior
 
 - <!-- List the expected behavior -->
