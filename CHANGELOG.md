@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.0.4](https://github.com/eels/chic-modules/compare/v1.0.3...v1.0.4) - 2021-10-27
+
+### Commits
+
+- chore: add issues template [`8f345f3`](https://github.com/eels/chic-modules/commit/8f345f3d0cf4517a69deabf8368a70fda92097bd)
+- chore: convert issues to new github format [`cf97f6c`](https://github.com/eels/chic-modules/commit/cf97f6c69ce1700bfab34316e200eede398d99b1)
+- docs: add codeql badge to readme [`fec029b`](https://github.com/eels/chic-modules/commit/fec029b72d6988fc793455205367f03b520a19e6)
+- docs: add historical changelog [`7e5a84d`](https://github.com/eels/chic-modules/commit/7e5a84d468524d1feb0ae25149453e78a65628e1)
+- docs: update readme badges [`a70a36e`](https://github.com/eels/chic-modules/commit/a70a36eb54ae4d8dec8e1cb0568ef0e7da7536fe)
+- feat: add initial codeql analysis action [`42905e9`](https://github.com/eels/chic-modules/commit/42905e97f5d95090b3d3a17213a8841b4b719b5f)
+- fix: move module declarations to their own file [`5f55090`](https://github.com/eels/chic-modules/commit/5f550909c4c615b8f5afd7b02f20a19e583206cf)
+- fix: remove unnecessary comment in yml [`49b5530`](https://github.com/eels/chic-modules/commit/49b55302a2c7c373039987ce658a5acb7048537a)
+- refactor: add back local in-memory cache to reduce loops [`3c271b1`](https://github.com/eels/chic-modules/commit/3c271b112f34d268a3a6880798756d4fb0e788d5)
+- refactor: add independent array search function [`888c0cc`](https://github.com/eels/chic-modules/commit/888c0ccf9d1f0fd27f5f68967cd0925f05714264)
+
 ## [v1.0.3](https://github.com/eels/chic-modules/compare/v1.0.2...v1.0.3) - 2021-10-25
 
 ### Commits
