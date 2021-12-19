@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.0.5](https://github.com/eels/chic-modules/compare/v1.0.4...v1.0.5) - 2021-12-19
+
+### Commits
+
+- build(deps): bump actions/setup-node from 2.4.1 to 2.5.0 [`27450f2`](https://github.com/eels/chic-modules/commit/27450f25713c2261a395f1d4ee352144f87eae61)
+- chore(deps-dev): bump @commitlint/cli from 13.2.1 to 14.1.0 [`0f35272`](https://github.com/eels/chic-modules/commit/0f352728e3942788faa46492d687a3bc06ce809b)
+- chore(deps-dev): bump @commitlint/cli from 14.1.0 to 15.0.0 [`e3cebb9`](https://github.com/eels/chic-modules/commit/e3cebb96c90720b1d1451931333b61aff1064eda)
+- chore(deps-dev): bump @commitlint/config-conventional [`f11f93a`](https://github.com/eels/chic-modules/commit/f11f93ae71101c18e4bffda6b298f003867f1fe7)
+- chore(deps-dev): bump @commitlint/config-conventional [`48f9713`](https://github.com/eels/chic-modules/commit/48f97130fb9d70a944a926cc5fce317b4efb169c)
+- chore(deps-dev): bump eslint-plugin-compat from 3.13.0 to 4.0.0 [`f355210`](https://github.com/eels/chic-modules/commit/f355210a509bbe4a054476c186485e1248ddcf73)
+- chore(deps-dev): bump lint-staged from 11.2.6 to 12.0.2 [`6b594ce`](https://github.com/eels/chic-modules/commit/6b594ce70553a2e9856d85176010a469e4bb5c49)
+- docs: update v1.0.4 changelog [`fc914a5`](https://github.com/eels/chic-modules/commit/fc914a50db76b684d8889b24dcf0ed63017fd334)
+
 ## [v1.0.4](https://github.com/eels/chic-modules/compare/v1.0.3...v1.0.4) - 2021-10-27
 
 ### Commits
