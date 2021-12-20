@@ -15,8 +15,8 @@ on:
         type: choice
 
 jobs:
-  test:
-    name: Release
+  release:
+    name: Release Package to NPM
     runs-on: ubuntu-latest
 
     strategy:
