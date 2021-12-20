@@ -120,7 +120,7 @@ function MyButton({ children, isPrimary }) {
     }
   );
 
-  return <button classNames={classes}>{children}</button>;
+  return <button className={classes}>{children}</button>;
 }
 
 // outputs <button class="button button--primary">
@@ -155,7 +155,7 @@ Any prop can be used to infer a style modifier as long as it starts with `has`, 
 
 ## Sharing Styles
 
-You can extend an existing "chic" component, or just about any component so long as it accepts the `classNames` prop, and supply it with the class names you wish to attach.
+You can extend an existing "chic" component, or just about any component so long as it accepts the `className` prop, and supply it with the class names you wish to attach.
 
 ```scss
 // button.module.css
