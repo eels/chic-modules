@@ -79,3 +79,4 @@ jobs:
           VERSION=$(node -p -e "require('./package.json').version")
           git add CHANGELOG.md && git commit -m "docs: update v$VERSION changelog"
           git push
+          git push --tags
