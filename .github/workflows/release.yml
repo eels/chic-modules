@@ -27,6 +27,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Set Git User Config Details
+        run: |
+          git config --global user.email "liam@liam.codes"
+          git config --global user.name "Liam Howell"
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2.5.0
         with:
