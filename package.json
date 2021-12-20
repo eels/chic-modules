@@ -34,7 +34,6 @@
     "lint:types": "tsc --noEmit",
     "prepack": "yarn clean && yarn build",
     "prepare": "husky install",
-    "release": "np --no-release-draft",
     "test": "jest --coverage"
   },
   "browserslist": [
