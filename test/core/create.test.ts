@@ -6,6 +6,10 @@ import type { CSSModule, ConstructOptions } from '@types';
 jest.mock('@src/lib/construct', () => jest.fn());
 
 describe('core/create', () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('should return a function with `attrs` defined as a property', () => {
     const styled = create({});
 
