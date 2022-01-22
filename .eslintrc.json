@@ -12,7 +12,7 @@
 
   "env": {
     "browser": true,
-    "es6": true,
+    "es2021": true,
     "jest": true
   },
 
@@ -24,7 +24,6 @@
     "import",
     "jest-dom",
     "react",
-    "react-hooks",
     "prettier",
     "sort-destructure-keys",
     "sort-imports-es6-autofix",
