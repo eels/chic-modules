@@ -87,7 +87,7 @@
     "chic-modules": "latest",
     "eslint": "^8.1.0",
     "eslint-config-semistandard": "^16.0.0",
-    "eslint-config-standard": "^16.0.3",
+    "eslint-config-standard": "^17.0.0",
     "eslint-import-resolver-typescript": "^2.5.0",
     "eslint-plugin-compat": "^4.0.0",
     "eslint-plugin-import": "^2.25.2",
