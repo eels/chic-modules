@@ -11,7 +11,7 @@
   <br />
   <a href="https://www.npmjs.com/package/chic-modules"><img src="https://img.shields.io/npm/v/chic-modules?style=flat-square" /></a>
   <a href="https://coveralls.io/github/eels/chic-modules"><img src="https://img.shields.io/coveralls/github/eels/chic-modules?label=Coverage&style=flat-square" /></a>
-  <a href="https://github.com/eels/chic-modules/actions/workflows/codeql-analysis.yml"><img src="https://img.shields.io/github/workflow/status/eels/chic-modules/CodeQL%20Analysis?label=CodeQL&style=flat-square" /></a>
+  <a href="https://github.com/eels/chic-modules/actions/workflows/codeql-analysis.yml"><img src="https://img.shields.io/github/actions/workflow/status/eels/chic-modules/codeql-analysis.yml?branch=main&label=CodeQL&style=flat-square" /></a>
   <a href="https://www.npmjs.com/package/chic-modules"><img src="https://img.shields.io/npm/dm/chic-modules?label=Downloads&style=flat-square" /></a>
   <a href="https://unpkg.com/chic-modules@latest/dist/chic-modules.mjs"><img src="https://img.badgesize.io/https:/unpkg.com/chic-modules@latest/dist/chic-modules.mjs?label=Gzip%20Size&style=flat-square&compression=gzip" /></a>
   <br /><br />
@@ -357,13 +357,6 @@ Sing loud and proud! Let the world know that you're using `chic-modules`
 ```
 [![styled with: chic-modules](https://img.shields.io/badge/styled%20with-%E2%9C%A8%20chic--modules-blue?style=flat-square)](https://github.com/eels/chic-modules)
 ```
-
-## Built With `chic-modules`
-
-- [liam.codes](https://github.com/eels/liam.codes) My personal website, highlighing recent projects and displaying contact information
-- [start.liam.codes](https://github.com/eels/start.liam.codes) A custom new tab screen that attempts to reduce my procrastination
-
-Know of any cool projects built using `chic-modules`? Raise an [issue](https://github.com/eels/chic-modules/issues/new), let me know and I'll add them to the list!
 
 ## Contributing
 
